@@ -4,7 +4,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #FAFAFA;
+    background: #E5E5E5;
 }
 
 .hidden {
@@ -44,7 +44,3 @@ nav {
     flex-direction: column;
     align-items: center;
 }
-
-/* @media (min-width: 600px) {
-    
-} */
