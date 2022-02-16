@@ -1,26 +1,20 @@
 .my-quizzes {
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    transform: translate(-50%);
+    display: flex;
     width: 340px;
+    height: 181px;
 }
 
 .no-quiz-created {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    width: 340px;
     height: 181px;
-    border: 1px dashed #D5D5D5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px dashed #D4D4D4;
     border-radius: 5px;
 }
 
-.no-quiz-created span {
-    position: absolute;
-    top: 7px;
-    left: 50%;
-    transform: translate(-50%);
+.no-quiz-created p{
     width: 250px;
     height: 107px;
     display: flex;
@@ -29,13 +23,10 @@
     font-size: 20px;
     line-height: 23px;
     color: #B9B9B9;
+    margin-top: 7px;
 }
 
 .no-quiz-created button {
-    position: absolute;
-    top: 108px;
-    left: 50%;
-    transform: translate(-50%);
     width: 151px;
     height: 40px;
     border: 1px dashed #EC362D;
@@ -47,10 +38,6 @@
 }
 
 .all-quizzes {
-    position: absolute;
-    top: 316px;
-    left: 50%;
-    transform: translate(-50%);
     width: 340px;
     display: flex;
     flex-wrap: wrap;
@@ -60,9 +47,6 @@
 }
 
 .all-quizzes p {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 158px;
     height: 23px;
     font-weight: bold;

@@ -35,6 +35,7 @@ function showAllQuizzes() {
 function createQuizz() {
     const main = document.querySelector("main");
     main.innerHTML = "";
+    
 }
 
 
