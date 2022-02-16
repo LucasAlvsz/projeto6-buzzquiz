@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home-page.css">
+    <link rel="stylesheet" href="css/quizz-page.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,24 +20,31 @@
 </head>
 
 <body>
-    <header><span>BuzzQuizz</span></header>
-    
-    <div class="page">
-        <main>
-            <nav>
-                <ul class="my-quizzes">
-                    <li class="no-quiz-created">
-                        <span>Você não criou nenhum quizz ainda :(</span>
-                        <button>Criar Quizz</button>
-                    </li>
-                </ul>
+    <header>
+        <!-- <span>-->
+        <p>BuzzQuizz</p> <!-- </span>-->
+    </header>
 
-                <ul class="all-quizzes">
-                    <p>Todos os Quizzes</p>
-                </ul>
-            </nav>
-        </main>
+    <!-- quizz page -->
+    <!-- <div class="deletar">
+        <img src="imgs/download.png" alt="img">
+        <p class="quizz-title"> </p> -->
     </div>
+    <!-- A div "main" já não forneceria esse papel de page não? -->
+    <main>
+        <nav>
+            <ul class="my-quizzes">
+                <li class="no-quiz-created">
+                    <p>Você não criou nenhum quizz ainda :(</p>
+                    <button>Criar Quizz</button>
+                </li>
+            </ul>
+
+            <ul class="all-quizzes">
+                <p>Todos os Quizzes</p>
+            </ul>
+        </nav> 
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="js/script.js"></script>
