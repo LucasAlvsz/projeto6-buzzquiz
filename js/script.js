@@ -1,4 +1,5 @@
 let quizzes = [];
+let filteredQuizzes = [];
 
 
 function pickUpAllQuizzes() {
