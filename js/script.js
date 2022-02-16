@@ -59,7 +59,7 @@ function createQuizz() {
                             <button onclick="pickUpCreateQuizzForm(), createQuizzQuestions()">Prosseguir para criar perguntas</button>
                         </div>
     `;
-    
+
 }
 // Recebe as informações do form incial
 function pickUpCreateQuizzForm() {

@@ -7,26 +7,14 @@ body {
     background-color: #FAFAFA;
 }
 
-/* .page {
-    /* position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    width: 375px;
-    height: 100%;
-    display: flex;
-} */
-
-.hidden{
+.hidden {
     display: none;
-    /* Quando a div ja tem display atribuir display none não da em nada */
-    /* por isso o visibiliy */
     visibility: hidden;
 }
 
 header {
     position: fixed;
     top: 0;
-    /* left: 0; */
     width: 100vw;
     height: 69px;
     display: flex;
@@ -36,8 +24,8 @@ header {
     background-color: #EC362D;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-/* trocando span pelo "p" */
-header p{ 
+
+header p {
     font-weight: bold;
     font-size: 37px;
     line-height: 43px;
@@ -45,15 +33,13 @@ header p{
 }
 
 main {
-    /* background-color: red; */
-    width: 100vw; 
-    /* Tamanho pag - header */
+    width: 100vw;
     height: calc(100vh - 69px);
     overflow: auto;
     margin-top: 69px;
 }
 
-nav{
+nav {
     display: flex;
     flex-direction: column;
     align-items: center;
