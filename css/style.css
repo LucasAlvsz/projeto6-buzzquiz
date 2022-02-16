@@ -46,20 +46,19 @@ header p{
 
 main {
     /* background-color: red; */
-    width: 100vw;
+    width: 100vw; 
     /* Tamanho pag - header */
     height: calc(100vh - 69px);
-    margin-top: 80px;
+    overflow: auto;
+    margin-top: 69px;
 }
 
 nav{
-    width: inherit;
-    height: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-@media (min-width: 600px) {
+/* @media (min-width: 600px) {
     
-}
+} */
