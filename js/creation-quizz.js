@@ -5,7 +5,7 @@ function createQuizz() {
     navHome.classList.add("hidden");
     main.innerHTML += `
                         <section class="quizz-creation-page">
-                            <div class="create-quizz">
+                            <div class="create-quizz-informations">
                                 <h1>Comece pelo começo</h1>
                                 <form>
                                     <input placeholder="Título do seu quizz"></input>
@@ -20,10 +20,10 @@ function createQuizz() {
 }
 // Verifica as informações do formulario inicial
 function checkInformation() {
-    form.title = document.querySelector(".create-quizz input:first-child").value;
-    form.image = document.querySelector(".create-quizz input:nth-child(2)").value;
-    amountOf.questions = document.querySelector(".create-quizz input:nth-child(3)").value;
-    amountOf.levels = document.querySelector(".create-quizz input:nth-child(4)").value;
+    form.title = document.querySelector(".create-quizz-informations input:first-child").value;
+    form.image = document.querySelector(".create-quizz-informations input:nth-child(2)").value;
+    amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
+    amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
 
     // let controle = 0;
     // if(!regularExpression.test(form.image)){
@@ -49,11 +49,11 @@ function checkInformation() {
 
 // Chama a tela de criação das perguntas do quizz
 function createQuizzQuestions() {
-    const createQuizz = document.querySelector(".quizz-creation-page .create-quizz");
+    const createQuizzInformation = document.querySelector(".quizz-creation-page .create-quizz-informations");
     const creationPage = document.querySelector(".quizz-creation-page");
-    createQuizz.classList.add("hidden");
+    createQuizzInformation.style.display = "none";
     creationPage.innerHTML += `
-    <div class="creatie-quizz-questions">
+    <div class="create-quizz-questions">
         <h1>Crie suas perguntas</h1>
         <form> 
             <p>Pergunta 1</p>
