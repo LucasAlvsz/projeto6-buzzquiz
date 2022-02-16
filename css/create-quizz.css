@@ -35,7 +35,7 @@
     outline: none;
 }
 
-.create-quizz input::placeholder{
+.create-quizz input::placeholder {
 
     color: #BABABA;
     font-style: italic;
