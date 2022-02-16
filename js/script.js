@@ -1,8 +1,10 @@
+var regularExpression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?|magnet:\?xt=urn:btih:/;
 let quizzes = [];
 const URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/";
-const main = document.querySelector("main");
-let amountOfLevels = 0;
-let amountOfQuestions = 0;
+let amountOf = {
+    levels: 0,
+    questions: 0
+}
 let userQuizzes = [];
 let form = {
     title: null,
@@ -41,50 +43,6 @@ function showAllQuizzes() {
     //     if(imgQuizz.title)
     //     allQuizes.innerHTML += `<li ><img class="home-quiz-image" src="${imgQuizz.image}" alt="imagem quiz"></li>`;
     // });
-}
-
-// Chama a tela de criação do quizz
-function createQuizz() {
-    const navHome = document.querySelector("main nav");
-    navHome.classList.add("hidden");
-    main.innerHTML += `
-                        <div class="create-quizz">
-                            <h1>Comece pelo começo</h1>
-                            <form>
-                                <input placeholder="Título do seu quizz"></input>
-                                <input placeholder="URL da imagem do seu quizz"></input>
-                                <input placeholder="Quantidade de perguntas do quizz"></input>
-                                <input placeholder="Quantidade de níveis do quizz"></input>
-                            </form>
-                            <button onclick="pickUpCreateQuizzForm(), createQuizzQuestions()">Prosseguir para criar perguntas</button>
-                        </div>
-    `;
-
-}
-// Recebe as informações do form incial
-function pickUpCreateQuizzForm() {
-    form.title = document.querySelector(".create-quizz input:first-child").value;
-    form.image = document.querySelector(".create-quizz input:nth-child(2)").value;
-    amountOfQuestions = document.querySelector(".create-quizz input:nth-child(3)").value;
-    amountOfLevels = document.querySelector(".create-quizz input:nth-child(4)").value;
-}
-
-// Chama a tela de criação das perguntas do quizz
-function createQuizzQuestions() {
-    const createQuizz = document.querySelector("main .create-quizz");
-    createQuizz.classList.add("hidden");
-    main.innerHTML += `
-    <div class="create-quizz-questions">
-        <h1>Crie suas perguntas</h1>
-        <form>
-            <input placeholder="Título do seu quizz"></input>
-            <input placeholder="URL da imagem do seu quizz"></input>
-            <input placeholder="Quantidade de perguntas do quizz"></input>
-            <input placeholder="Quantidade de níveis do quizz"></input>
-        </form>
-        <button onclick="createQuizzQuestions()">Prosseguir para criar perguntas</button>
-    </div>
-`;
 }
 
 
