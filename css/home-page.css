@@ -1,7 +1,5 @@
 .my-quizzes {
-    display: flex;
-    width: 340px;
-    height: 181px;
+
 }
 
 .no-quiz-created {
@@ -12,6 +10,7 @@
     align-items: center;
     border: 1px dashed #D4D4D4;
     border-radius: 5px;
+    margin-top: 31px;
 }
 
 .no-quiz-created p{
@@ -63,14 +62,4 @@
     width: 100%;
     height: 100%;
     border-radius: 5px;
-}
-
-@media (min-width: 600px) {
-    .my-quizzes {
-        width: 1051px;
-    }
-
-    .all-quizzes {
-        width: 1051px;
-    }
 }
