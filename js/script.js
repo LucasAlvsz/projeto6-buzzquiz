@@ -31,11 +31,11 @@ function showAllQuizzes() {
     const allQuizes = document.querySelector(".all-quizzes");
     for (let i = 0; i < quizzes.length; i++) {
         if (i === 0) {
-            allQuizes.innerHTML += `<li><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
+            allQuizes.innerHTML += `<li onclick="showPageQuizz(${quizzes[i]})"><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
         }
         else {
-            if (quizzes[i].title !== quizzes[i - 1].title) {
-                allQuizes.innerHTML += `<li><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
+            if (quizzes[i].title) /*!== quizzes[i - 1].title)*/{
+                allQuizes.innerHTML += `<li onclick="showPageQuizz(${quizzes[i]})"><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
             }
         }
     }
@@ -44,6 +44,8 @@ function showAllQuizzes() {
     //     allQuizes.innerHTML += `<li ><img class="home-quiz-image" src="${imgQuizz.image}" alt="imagem quiz"></li>`;
     // });
 }
-
+function teste(aa) {
+    console.log(aa);
+}
 
 pickUpAllQuizzes();
