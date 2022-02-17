@@ -21,7 +21,7 @@ function createQuizz() {
 // Verifica as informações do formulario inicial
 function checkInformation() {
     form.title = document.querySelector(".create-quizz-informations input:first-child").value;
-    form.image = document.querySelector(".create-quizz-informations input:nth-child(2)").value;
+    form.image = "https://th.bing.com/th/id/R.134275efe2edde9c1b2f54a3b41d7e9b?rik=yPQwMnuA0FjmbA&riu=http%3a%2f%2fferramentasinteligentes.com.br%2fwp-content%2fuploads%2f2015%2f06%2fwater-209901_1280.jpg&ehk=xnl0YRcaEQ96ra5oHwKkHhaJ9GeUczedE05Ahfq8UN0%3d&risl=&pid=ImgRaw&r=0"                                                                       //document.querySelector(".create-quizz-informations input:nth-child(2)").value;
     amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
     amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
 
@@ -49,23 +49,23 @@ function checkInformation() {
 
 // Chama a tela de criação das perguntas do quizz
 function createQuizzQuestions() {
-    const createQuizzInformation = document.querySelector(".quizz-creation-page .create-quizz-informations");
+    const createQuizzQuestions = document.querySelector(".create-quizz-informations");
     const creationPage = document.querySelector(".quizz-creation-page");
-    createQuizzInformation.style.display = "none";
+    createQuizzQuestions.style.display = "none";
     creationPage.innerHTML += `
     <div class="create-quizz-questions">
         <h1>Crie suas perguntas</h1>
         <div></div>
-        <button onclick="createQuizzQuestions()">Prosseguir para criar níveis</button>
+        <button onclick="createQuizzLevels()">Prosseguir para criar níveis</button>
     </div>
 `;
-   showQuestions();
+    showQuestions();
 }
-
-function showQuestions(){
+// Mostra a tela de criação
+function showQuestions() {
     const formPosition = document.querySelector(".create-quizz-questions div");
-    for(let i = 0; i < amountOf.questions; i++){
-        formPosition.innerHTML +=  `
+    for (let i = 0; i < amountOf.questions; i++) {
+        formPosition.innerHTML += `
         <form class="questions-form"> 
             <p>Pergunta ${i + 1}</p>
             <div>
@@ -90,12 +90,50 @@ function showQuestions(){
                 <input  placeholder="Resposta incorreta 3"></input>
                 <input  placeholder="URL da imagem 3"></input>
             </div>
-    </form>` 
+    </form>`
     }
 }
 
 function createQuizzLevels() {
-    const createQuizzInformation = document.querySelector(".quizz-creation-page .create-quizz-informations");
+    const createQuizzLevels = document.querySelector(".create-quizz-questions");
+    const creationPage = document.querySelector(".quizz-creation-page");
+    createQuizzLevels.style.display = "none";
+    creationPage.innerHTML += `
+    <div class="create-quizz-levels">
+        <h1>Agora, decida os níveis!</h1>
+        <div></div>
+        <button onclick="finalizeQuizzCreation()">Finalizar Quizz</button>
+    </div>
+   `;
+    showLevels();
+}
+
+function showLevels() {
+    const formPosition = document.querySelector(".create-quizz-levels div");
+    for (let i = 0; i < amountOf.levels; i++) {
+        formPosition.innerHTML += `
+        <form class="levels-form"> 
+            <p>Nível ${i + 1}</p>
+            <div>
+                <input placeholder="Título do nível"></input>
+                <input placeholder="% de acerto mínima"></input>
+                <input placeholder="URL da imagem do nível"></input>
+                <textarea placeholder="Descrição do nível"></textarea>
+            </div>  
+        </form>`
+    }
+}
+
+function finalizeQuizzCreation() {
+    const createQuizzInformation = document.querySelector(".create-quizz-levels");
     const creationPage = document.querySelector(".quizz-creation-page");
     createQuizzInformation.style.display = "none";
+    creationPage.innerHTML += `
+    <div class="finalize-creation">
+    <h1>Seu quizz está pronto!</h1>
+    <img src="${form.image}"></img>
+    <button>Acessar Quizz</button>
+    <button>Voltar pra home</button>
+    </div>
+    `
 }
