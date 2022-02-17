@@ -1,4 +1,4 @@
-var regularExpression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?|magnet:\?xt=urn:btih:/;
+
 let quizzes = [];
 const URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/";
 
