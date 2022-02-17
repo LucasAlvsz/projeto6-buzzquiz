@@ -81,7 +81,7 @@ function createQuizzQuestions() {
     <div class="create-quizz-questions">
         <h1>Crie suas perguntas</h1>
         <div></div>
-        <button onclick="pickUpQuestions()">Prosseguir para criar níveis</button>
+        <button onclick="createQuizzLevels();">Prosseguir para criar níveis</button>
     </div>
 `;
     showQuestions();
@@ -166,26 +166,26 @@ function finalizeQuizzCreation() {
     `
 }
 
-function pickUpQuestions() {
-    for(let i = 1; i <= amountOf.questions; i++){
-        questionObject.title = document.querySelector(`.question-${i} #question-title`).value;
-        questionObject.color = document.querySelector(`.question-${i} #question-color`).value;
-        for(let j = 1; j <= 4; j++){
-            if(j === 1){
-                answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
-                answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
-                answerObject.isCorrectAnswer = true;
-                questionObject.answers.push(answerObject);
-            }
-            else {
-                answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
-                answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
-                answerObject.isCorrectAnswer = false;
-                questionObject.answers.push(answerObject);
-            }
-    }
-    form.questions.push(questionObject);
-}
-createQuizzLevels();
-}
+// function pickUpQuestions() {
+//     for(let i = 1; i <= amountOf.questions; i++){
+//         questionObject.title = document.querySelector(`.question-${i} #question-title`).value;
+//         questionObject.color = document.querySelector(`.question-${i} #question-color`).value;
+//         for(let j = 1; j <= 4; j++){
+//             if(j === 1){
+//                 answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
+//                 answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
+//                 answerObject.isCorrectAnswer = true;
+//                 questionObject.answers.push(answerObject);
+//             }
+//             else {
+//                 answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
+//                 answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
+//                 answerObject.isCorrectAnswer = false;
+//                 questionObject.answers.push(answerObject);
+//             }
+//     }
+//     form.questions.push(questionObject);
+// }
+
+// }
 
