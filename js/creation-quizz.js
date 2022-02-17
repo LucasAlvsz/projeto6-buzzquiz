@@ -1,3 +1,4 @@
+let regularExpression =  /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?|magnet:\?xt=urn:btih:/;
 let amountOf = {
     levels: 0,
     questions: 0
@@ -40,7 +41,7 @@ function createQuizz() {
                                     <input placeholder="Quantidade de perguntas do quizz"></input>
                                     <input placeholder="Quantidade de níveis do quizz"></input>
                                 </form>
-                                <button onclick="checkInformation(), createQuizzQuestions();">Prosseguir para criar perguntas</button>
+                                <button onclick="checkInformation();">Prosseguir para criar perguntas</button>
                             </div>
                         </section>
     `;
@@ -52,26 +53,22 @@ function checkInformation() {
     amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
     amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
 
-    // let controle = 0;
-    // if(!regularExpression.test(form.image)){
-    //     console.log("Esta não é uma url valida");
-    //     controle ++;
-    // }
-    // if(!(form.title.length >= 20 && form.title.length <= 65)){
-    //     console.log("O titulo tem que ter entre 20 e 60 caracteres");
-    //     controle ++;
-    // }
-    // if(amountOf.questions < 3){
-    //     console.log("A quantidade de perguntas tem de ser ao menos 3");
-    //     controle ++;
-    // }
-    // if(amountOf.levels < 2){
-    //     console.log("A quantidade de niveis tem de ser ao menos 2");
-    //     controle ++;
-    // }
-    // if(controle === 0){
-    //     createQuizzQuestions();
-    // }
+    if(!(form.title.length >= 20 && form.title.length <= 65)){
+        alert("O titulo tem que ter entre 20 e 65 caracteres");
+    }
+    if(!(regularExpression.test(form.image))){
+        alert("Esta não é uma url valida");
+    }
+    if(amountOf.questions < 3){
+        alert("A quantidade de perguntas tem de ser ao menos 3");
+    }
+    if(amountOf.levels < 2){
+        alert("A quantidade de niveis tem de ser ao menos 2");
+    }
+    if((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)){
+        createQuizzQuestions()
+    }
+
 }
 
 // Chama a tela de criação das perguntas do quizz
@@ -83,7 +80,7 @@ function createQuizzQuestions() {
     <div class="create-quizz-questions">
         <h1>Crie suas perguntas</h1>
         <div></div>
-        <button onclick="createQuizzLevels(), pickUpQuestions()">Prosseguir para criar níveis</button>
+        <button onclick="pickUpQuestions()">Prosseguir para criar níveis</button>
     </div>
 `;
     showQuestions();
@@ -91,20 +88,23 @@ function createQuizzQuestions() {
 // Mostra a tela de criação
 function showQuestions() {
     const formPosition = document.querySelector(".create-quizz-questions div");
+    const form = document.querySelector("questions-form");
     for (let i = 0; i < amountOf.questions; i++) {
         formPosition.innerHTML += `
-        <form id="question-${i+1}" class="questions-form"> 
+        <form class="questions-form question-${i + 1}"> 
             <p>Pergunta ${i + 1}</p>
+            <p>Respostas incorretas</p>
+            <p>Resposta correta</p>
             <div>
                 <input id="question-title" placeholder="Texto da pergunta"></input>
                 <input id="question-color" placeholder="Cor de fundo da pergunta"></input>
             </div>
-            <p>Resposta correta</p>
+           
             <div>
                 <input id="question-answer-1" placeholder="Resposta Correta"></input>
                 <input id="question-url-1" placeholder="URL da imagem"></input>
             </div>
-            <p>Respostas incorretas</p>
+            
             <div>
                 <input id="question-answer-2" placeholder="Resposta incorreta 1"></input>
                 <input id="question-url-2" placeholder="URL da imagem 1"></input>
@@ -118,7 +118,7 @@ function showQuestions() {
                 <input id="question-url-4" placeholder="URL da imagem 3"></input>
             </div>
     </form>`
-    }
+    }   
 }
 
 function createQuizzLevels() {
@@ -165,26 +165,26 @@ function finalizeQuizzCreation() {
     `
 }
 
-// function pickUpQuestions() {
-//     for(let i = 0; i < amountOf.questions; i++){
-//         questionObject.title = document.querySelector(`#question-${i+1} #question-title`).value;
-//         questionObject.color = document.querySelector(`#question-${i+1} #question-color`).value;
-//         for(let j = 0; j < 4; j++){
-            
-//             answerObject.text = document.querySelector(`#question-${i+1} #question-answer-${i+1}`).value;
-//             answerObject.image = document.querySelector(`#question-${i+1} #question-url-${i+1}`).value;
-
-//             if(j === 0){
-//                 answerObject.isCorrectAnswer = true;
-//             }
-//             else{
-//                 answerObject.isCorrectAnswer = false;
-//             }
-//             if(answerObject.text !== null){
-//                 questionObject.answers.push(answerObject);
-//             }
-//         }
-//     }
-// }
-
+function pickUpQuestions() {
+    for(let i = 1; i <= amountOf.questions; i++){
+        questionObject.title = document.querySelector("#question-title");
+        questionObject.color = document.querySelector("#question-color");
+        for(let j = 1; j <= 4; j++){
+            if(j === 1){
+                answerObject.text = document.querySelector(`question-answer-${j}`);
+                answerObject.image = document.querySelector(`question-url-${j}`);
+                answerObject.isCorrectAnswer = true;
+                questionObject.answers.push(answerObject);
+            }
+            else {
+                answerObject.text = document.querySelector(`question-answer-${j}`);
+                answerObject.image = document.querySelector(`question-url-${j}`);
+                answerObject.isCorrectAnswer = false;
+                questionObject.answers.push(answerObject);
+            }
+            form.questions.push(questionObject);
+    }
+    createQuizzLevels();
+}
+}
 
