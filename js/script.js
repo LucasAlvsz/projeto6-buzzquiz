@@ -15,27 +15,22 @@ let form = {
 
 // Pega os quizzes do servidor
 function pickUpAllQuizzes() {
-    const promisse = axios.get(`${URL}quizzes`);
-    promisse.then((response) => {
-        response.data.forEach(quizz => {
-            quizzes.push(quizz);
-        });
-        console.log(quizzes);
-        showAllQuizzes();
-    });
-    promisse.catch((erro) => console.log(`${erro.response.status} Erro ao pegar os quizzes`));
+    axios.get(`${URL}quizzes`).then(showAllQuizzes).catch((erro) => console.log(`${erro.response.status} Erro ao pegar os quizzes`));
 }
 
 // Mostra os quizzes na tela inicial
-function showAllQuizzes() {
+function showAllQuizzes(quizzesArray) {
+    quizzes = quizzesArray.data
     const allQuizes = document.querySelector(".all-quizzes");
     for (let i = 0; i < quizzes.length; i++) {
         if (i === 0) {
-            allQuizes.innerHTML += `<li onclick="showPageQuizz(${quizzes[i]})"><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
+            quizI = quizzes[i]
+            console.log(quizI);
+            allQuizes.innerHTML += `<li onclick="showPageQuizz(quizzes[${i}])"><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
         }
         else {
             if (quizzes[i].title) /*!== quizzes[i - 1].title)*/{
-                allQuizes.innerHTML += `<li onclick="showPageQuizz(${quizzes[i]})"><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
+                allQuizes.innerHTML += `<li onclick="showPageQuizz(quizzes[${i}])"><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
             }
         }
     }
@@ -43,9 +38,6 @@ function showAllQuizzes() {
     //     if(imgQuizz.title)
     //     allQuizes.innerHTML += `<li ><img class="home-quiz-image" src="${imgQuizz.image}" alt="imagem quiz"></li>`;
     // });
-}
-function teste(aa) {
-    console.log(aa);
 }
 
 pickUpAllQuizzes();
