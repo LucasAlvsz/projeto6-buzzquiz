@@ -45,7 +45,7 @@
     flex-direction: column;
 }
 
-.all-quizzes p:nth-child(1) {
+.all-quizzes span p{
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
