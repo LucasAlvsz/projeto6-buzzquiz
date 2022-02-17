@@ -165,26 +165,27 @@ function finalizeQuizzCreation() {
     `
 }
 
-// function pickUpQuestions() {
-//     for(let i = 0; i < amountOf.questions; i++){
-//         questionObject.title = document.querySelector(`#question-${i+1} #question-title`).value;
-//         questionObject.color = document.querySelector(`#question-${i+1} #question-color`).value;
-//         for(let j = 0; j < 4; j++){
-            
-//             answerObject.text = document.querySelector(`#question-${i+1} #question-answer-${i+1}`).value;
-//             answerObject.image = document.querySelector(`#question-${i+1} #question-url-${i+1}`).value;
+function pickUpQuestions() {
+    console.log("entrei");
+    for(let i = 0; i < amountOf.questions; i++){
+        questionObject.title = document.querySelector(`#question-${i+1} #question-title`).value;
+        questionObject.color = document.querySelector(`#question-${i+1} #question-color`).value;
+        for(let j = 0; j < 4; j++){
+            answerObject.text = document.querySelector(`#question-${i+1} #question-answer-${j+1}`).value;
+            answerObject.image = document.querySelector(`#question-${i+1} #question-url-${j+1}`).value;
 
-//             if(j === 0){
-//                 answerObject.isCorrectAnswer = true;
-//             }
-//             else{
-//                 answerObject.isCorrectAnswer = false;
-//             }
-//             if(answerObject.text !== null){
-//                 questionObject.answers.push(answerObject);
-//             }
-//         }
-//     }
-// }
+            if(j === 0){
+                answerObject.isCorrectAnswer = true;
+            }
+            else{
+                answerObject.isCorrectAnswer = false;
+            }
+            if(answerObject.text){
+                console.log(answerObject);
+                questionObject.answers.push(answerObject);
+            }
+        }
+    }
+}
 
 

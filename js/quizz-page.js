@@ -41,14 +41,15 @@ function showPageQuizz(quizz) {
                     <p>${quizz.questions[i].answers[j].text}</p>
                 </div>
                 `
-            }
-            classQuizzPage.querySelector(`.c${i}`).innerHTML +=
-                `
+            } else {
+                classQuizzPage.querySelector(`.c${i}`).innerHTML +=
+                    `
             <div class="alternative wrong-answer" onclick="selectAlternative(this)">
                     <img src="${quizz.questions[i].answers[j].image}">
                     <p>${quizz.questions[i].answers[j].text}</p>
             </div>
             `
+            }
         }
     }
 }
@@ -118,14 +119,13 @@ function restartQuizz(value) {
     levels = []
     indexLevel = null
     antiRepeater = 0
-    if (value) 
+    if (value)
         showPageQuizz(quizzLog)
 }
 
-function backToHomePage(){
+function backToHomePage() {
     restartQuizz(false)
     document.querySelector(".quizz-page").classList.add("hidden")
     document.querySelector("nav").classList.remove("hidden")
     document.querySelector("nav").scrollIntoView()
-    
 }
