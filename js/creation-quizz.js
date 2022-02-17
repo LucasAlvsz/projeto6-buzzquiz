@@ -172,6 +172,38 @@ function finalizeQuizzCreation() {
     `
 }
 
+<<<<<<< HEAD
+function pickUpQuestions() {
+    console.log("entrei");
+    for(let i = 1; i <= amountOf.questions; i++){
+        questionObject.title = document.querySelector("#question-title").value;
+        questionObject.color = document.querySelector("#question-color").value;
+        for(let j = 1; j <= 4; j++){
+            if(j === 1){
+                answerObject.text = document.querySelector(`#question-answer-${j}`).value;
+                answerObject.image = document.querySelector(`#question-url-${j}`).value;
+                answerObject.isCorrectAnswer = true;
+                console.log(questionObject, "questionObject");
+                console.log(answerObject, + "answerObject");
+                questionObject.answers.push(answerObject);
+                console.log(answerObject, + "answerObject");
+
+            }
+            else {
+                answerObject.text = document.querySelector(`#question-answer-${j}`.value);
+                answerObject.image = document.querySelector(`#question-url-${j}`.value);
+                answerObject.isCorrectAnswer = false;
+                console.log(questionObject, "questionObject");
+                console.log(answerObject, + "answerObject");
+                questionObject.answers.push(answerObject);
+                console.log(answerObject, + "answerObject");
+            }
+            form.questions.push(questionObject);
+    }
+    createQuizzLevels();
+}
+}
+=======
 // function pickUpQuestions() {
 //     for(let i = 1; i <= amountOf.questions; i++){
 //         questionObject.title = document.querySelector(`.question-${i} #question-title`).value;
@@ -194,6 +226,7 @@ function finalizeQuizzCreation() {
 // }
 
 // }
+>>>>>>> afcb905ab7c1fd5b1bbcdf42d781a6a912ca2b78
 
 function pickUpLevels() {
     for (let i = 1; i <= amountOf.levels; i++) {
