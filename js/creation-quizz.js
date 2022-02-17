@@ -1,4 +1,4 @@
-let regularExpression =  /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?|magnet:\?xt=urn:btih:/;
+let regularExpression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?|magnet:\?xt=urn:btih:/;
 let amountOf = {
     levels: 0,
     questions: 0
@@ -24,6 +24,12 @@ let answerObject = {
     text: null,
     image: null,
     isCorrectAnswer: null
+}
+let levelsObject = {
+    title: null,
+    image: null,
+    text: null,
+    minValue: 0
 }
 
 // Chama a tela de criação do quizz
@@ -66,7 +72,7 @@ function checkInformation() {
     //     alert("A quantidade de niveis tem de ser ao menos 2");
     // }
     // if((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)){
-        
+
     // }
     createQuizzQuestions();
 
@@ -119,7 +125,7 @@ function showQuestions() {
                 <input id="question-url-4" placeholder="URL da imagem 3"></input>
             </div>
         </form>`
-    }   
+    }
 }
 
 function createQuizzLevels() {
@@ -130,7 +136,7 @@ function createQuizzLevels() {
     <div class="create-quizz-levels">
         <h1>Agora, decida os níveis!</h1>
         <div></div>
-        <button onclick="finalizeQuizzCreation()">Finalizar Quizz</button>
+        <button onclick="pickUpLevels()">Finalizar Quizz</button>
     </div>
    `;
     showLevels();
@@ -140,7 +146,7 @@ function showLevels() {
     const formPosition = document.querySelector(".create-quizz-levels div");
     for (let i = 0; i < amountOf.levels; i++) {
         formPosition.innerHTML += `
-        <form id="level-${i + 1}" class="levels-form"> 
+        <form class="levels-form level-${i + 1}"> 
             <p>Nível ${i + 1}</p>
             <div>
                 <input placeholder="Título do nível"></input>
@@ -188,4 +194,26 @@ function finalizeQuizzCreation() {
 // }
 
 // }
+
+function pickUpLevels() {
+    for (let i = 1; i <= amountOf.levels; i++) {
+        levelObject.title = document.querySelector(`.level-${i} input:first-of-type`).value;
+        levelObject.minValue = document.querySelector(`.level-${i} input:nth-of-type(2)`).value;
+        levelObject.image = document.querySelector(`.level-${i} input:nth-of-type(3)`).value;
+        levelObject.text = document.querySelector(`.level-${i} textarea`).value;
+        
+        console.log(levelObject);
+        form.levels.push(levelObject);
+    }
+    for (let j = 0; j < amountOf.levels; j++){
+        if(form.levels[j].title.length < 10){
+            alert("O titulo do nível deve conter pelo menos 10 caracteres");
+        }
+        if((form.levels[j].minValue < "0") || (form.levels[j].minValue > "100")){
+            alert("A porcentagem de acerto minima deve ser um número entre 0 e 100");
+        }
+    }
+
+    // finalizeQuizzCreation();
+}
 
