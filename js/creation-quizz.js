@@ -167,18 +167,18 @@ function finalizeQuizzCreation() {
 
 function pickUpQuestions() {
     for(let i = 1; i <= amountOf.questions; i++){
-        questionObject.title = document.querySelector("#question-title");
-        questionObject.color = document.querySelector("#question-color");
+        questionObject.title = document.querySelector("#question-title").value;
+        questionObject.color = document.querySelector("#question-color").value;
         for(let j = 1; j <= 4; j++){
             if(j === 1){
-                answerObject.text = document.querySelector(`question-answer-${j}`);
-                answerObject.image = document.querySelector(`question-url-${j}`);
+                answerObject.text = document.querySelector(`question-answer-${j}`).value;
+                answerObject.image = document.querySelector(`question-url-${j}`).value;
                 answerObject.isCorrectAnswer = true;
                 questionObject.answers.push(answerObject);
             }
             else {
-                answerObject.text = document.querySelector(`question-answer-${j}`);
-                answerObject.image = document.querySelector(`question-url-${j}`);
+                answerObject.text = document.querySelector(`question-answer-${j}`).value;
+                answerObject.image = document.querySelector(`question-url-${j}`).value;
                 answerObject.isCorrectAnswer = false;
                 questionObject.answers.push(answerObject);
             }
