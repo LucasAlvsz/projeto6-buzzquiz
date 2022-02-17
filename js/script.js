@@ -1,17 +1,7 @@
 var regularExpression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?|magnet:\?xt=urn:btih:/;
 let quizzes = [];
 const URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/";
-let amountOf = {
-    levels: 0,
-    questions: 0
-}
-let userQuizzes = [];
-let form = {
-    title: null,
-    image: null,
-    questions: [],
-    levels: []
-};
+
 
 // Pega os quizzes do servidor
 function pickUpAllQuizzes() {

@@ -1,3 +1,30 @@
+let amountOf = {
+    levels: 0,
+    questions: 0
+}
+let form = {
+    title: null,
+    image: null,
+    questions: [],
+    levels: []
+};
+let questionObject = {
+    title: null,
+    color: null,
+    answers: []
+}
+let levelObject = {
+    title: null,
+    image: null,
+    text: null,
+    minValue: null
+}
+let answerObject = {
+    text: null,
+    image: null,
+    isCorrectAnswer: null
+}
+
 // Chama a tela de criação do quizz
 function createQuizz() {
     const main = document.querySelector("main");
@@ -56,7 +83,7 @@ function createQuizzQuestions() {
     <div class="create-quizz-questions">
         <h1>Crie suas perguntas</h1>
         <div></div>
-        <button onclick="createQuizzLevels()">Prosseguir para criar níveis</button>
+        <button onclick="createQuizzLevels(), pickUpQuestions()">Prosseguir para criar níveis</button>
     </div>
 `;
     showQuestions();
@@ -66,29 +93,29 @@ function showQuestions() {
     const formPosition = document.querySelector(".create-quizz-questions div");
     for (let i = 0; i < amountOf.questions; i++) {
         formPosition.innerHTML += `
-        <form class="questions-form"> 
+        <form id="question-${i+1}" class="questions-form"> 
             <p>Pergunta ${i + 1}</p>
             <div>
-                <input placeholder="Texto da pergunta"></input>
-                <input placeholder="Cor de fundo da pergunta"></input>
+                <input id="question-title" placeholder="Texto da pergunta"></input>
+                <input id="question-color" placeholder="Cor de fundo da pergunta"></input>
             </div>
             <p>Resposta correta</p>
             <div>
-                <input placeholder="Resposta Correta"></input>
-                <input placeholder="URL da imagem"></input>
+                <input id="question-answer-1" placeholder="Resposta Correta"></input>
+                <input id="question-url-1" placeholder="URL da imagem"></input>
             </div>
             <p>Respostas incorretas</p>
             <div>
-                <input placeholder="Resposta incorreta 1"></input>
-                <input placeholder="URL da imagem 1"></input>
+                <input id="question-answer-2" placeholder="Resposta incorreta 1"></input>
+                <input id="question-url-2" placeholder="URL da imagem 1"></input>
             </div>
             <div>
-                <input placeholder="Resposta incorreta 2"></input>
-                <input placeholder="URL da imagem 2"></input>
+                <input id="question-answer-3" placeholder="Resposta incorreta 2"></input>
+                <input id="question-url-3" placeholder="URL da imagem 2"></input>
             </div>
             <div>
-                <input  placeholder="Resposta incorreta 3"></input>
-                <input  placeholder="URL da imagem 3"></input>
+                <input id="question-answer-4" placeholder="Resposta incorreta 3"></input>
+                <input id="question-url-4" placeholder="URL da imagem 3"></input>
             </div>
     </form>`
     }
@@ -112,7 +139,7 @@ function showLevels() {
     const formPosition = document.querySelector(".create-quizz-levels div");
     for (let i = 0; i < amountOf.levels; i++) {
         formPosition.innerHTML += `
-        <form class="levels-form"> 
+        <form id="level-${i + 1}" class="levels-form"> 
             <p>Nível ${i + 1}</p>
             <div>
                 <input placeholder="Título do nível"></input>
@@ -137,3 +164,27 @@ function finalizeQuizzCreation() {
     </div>
     `
 }
+
+// function pickUpQuestions() {
+//     for(let i = 0; i < amountOf.questions; i++){
+//         questionObject.title = document.querySelector(`#question-${i+1} #question-title`).value;
+//         questionObject.color = document.querySelector(`#question-${i+1} #question-color`).value;
+//         for(let j = 0; j < 4; j++){
+            
+//             answerObject.text = document.querySelector(`#question-${i+1} #question-answer-${i+1}`).value;
+//             answerObject.image = document.querySelector(`#question-${i+1} #question-url-${i+1}`).value;
+
+//             if(j === 0){
+//                 answerObject.isCorrectAnswer = true;
+//             }
+//             else{
+//                 answerObject.isCorrectAnswer = false;
+//             }
+//             if(answerObject.text !== null){
+//                 questionObject.answers.push(answerObject);
+//             }
+//         }
+//     }
+// }
+
+
