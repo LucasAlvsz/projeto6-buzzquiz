@@ -77,17 +77,22 @@
 .result img {
     width: 340px;
     height: 255px;
+    display: flex;
+    justify-content: center;
     margin: 9px;
 }
 
 .result b {
     width: 340px;
+    display: flex;
+    justify-content: start;
     font-weight: bold;
     font-size: 17px;
     line-height: 20px;
     color: #484848;
     margin-top: 5px;
     margin-bottom: 14px;
+    margin-left: 10px;
 }
 
 .result button {
@@ -157,6 +162,7 @@
     }
 
     .alternative p {
+        max-width: 330px;
         font-size: 20px;
         line-height: 23px;
         margin-left: 3px;
