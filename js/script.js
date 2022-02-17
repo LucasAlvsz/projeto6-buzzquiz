@@ -13,21 +13,9 @@ function showAllQuizzes(quizzesArray) {
     quizzes = quizzesArray.data
     const allQuizes = document.querySelector(".all-quizzes");
     for (let i = 0; i < quizzes.length; i++) {
-        if (i === 0) {
-            quizI = quizzes[i]
-            console.log(quizI);
-            allQuizes.innerHTML += `<li onclick="showPageQuizz(quizzes[${i}])"><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
-        }
-        else {
-            if (quizzes[i].title) /*!== quizzes[i - 1].title)*/{
-                allQuizes.innerHTML += `<li onclick="showPageQuizz(quizzes[${i}])"><img class="home-quiz-image" src="${quizzes[i].image}" alt="imagem quiz"></li>`;
-            }
-        }
+        allQuizes.innerHTML += `<li onclick="showPageQuizz(quizzes[${i}])"><p class="quizz qzz${i}">${quizzes[i].title}</p>`;
+        document.querySelector(`.qzz${i}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizzes[i].image})`
     }
-    // quizzes.forEach(imgQuizz => {
-    //     if(imgQuizz.title)
-    //     allQuizes.innerHTML += `<li ><img class="home-quiz-image" src="${imgQuizz.image}" alt="imagem quiz"></li>`;
-    // });
 }
 
 pickUpAllQuizzes();
