@@ -21,15 +21,29 @@ function showPageQuizz(quizz) {
             `
         document.getElementById(`${i}`).style.backgroundColor = `${quizz.questions[i].color}`
         for (let j = 0; j < quizz.questions[i].answers.length; j++) {
+            if(quizz.questions[i].answers[j].isCorrectAnswer){
+                classQuizzPage.querySelector(`.c${i}`).innerHTML +=
+                `
+                <div class="alternative correct-answer" onclick="selectAlternative(this)">
+                    <img src="${quizz.questions[i].answers[j].image}">
+                    <p>${quizz.questions[i].answers[j].text}</p>
+                </div>
+                `
+            }
             classQuizzPage.querySelector(`.c${i}`).innerHTML +=
             `
-            <div class="alternative">
+            <div class="alternative wrong-answer" onclick="selectAlternative(this)">
                     <img src="${quizz.questions[i].answers[j].image}">
                     <p>${quizz.questions[i].answers[j].text}</p>
             </div>
             `
         }
     }
+
+function selectAlternative(alternative) {
+    
+}
+    
     /*
         id: 1,
         title: "Título do quizz",
