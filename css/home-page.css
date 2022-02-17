@@ -45,7 +45,7 @@
     flex-direction: column;
 }
 
-.all-quizzes p:nth-child(1) {
+.all-quizzes span p{
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
@@ -70,7 +70,7 @@
 
 @media (min-width: 750px) {
     .no-quiz-created {
-        margin: 112px 10px;
+        margin: 77px 0 112px;
         max-width: 1051px;
     }
 
@@ -78,11 +78,11 @@
         max-width: 1065px;
         flex-direction: row;
         flex-wrap: wrap;
-        /* margin: 40px 10px; */
+        margin: 0px 10px;
     }
     .all-quizzes span p{
         position: absolute;
-        top: 440px;
+        top: 402px;
         
     }
     .quizz {
