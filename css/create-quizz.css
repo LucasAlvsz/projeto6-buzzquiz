@@ -9,8 +9,11 @@
     font-weight: 700;
     color: #000000;
     font-size: 20px;
+    margin-top: 27px;
+    margin-bottom: 13px;
 }
 .quizz-creation-page form {
+    position: relative;
     width: 375px;
     margin-top: 29px;
     background-color: white;
@@ -67,9 +70,43 @@
     flex-direction: column;
     z-index: 1;
 }
-
 .create-quizz-questions div {
     display: flex;
     flex-direction: column;
+    gap: 14px;
+}
+.create-quizz-questions form {
+    padding-top: -20px;
+}
+.create-quizz-questions button {
+    margin-top: 46px;
+}
+.questions-form p {
+    position: absolute;
+    left: 17px;
+}
+.questions-form p:first-of-type {
+    top: 10px;
+}
+.questions-form p:nth-of-type(2) {
+    top: 179px
+}
+.questions-form p:nth-of-type(3) {
+    top: 360px;
+}
+.questions-form div:first-of-type{
+   margin-top: 45px;
+}
+.questions-form div:nth-of-type(2){
+    margin-top: 75px;
+}
+.questions-form div:nth-of-type(3){
+    margin-top: 65px;
+}
+.questions-form div:nth-of-type(4){
+    margin-top: 32px;
+}
+.questions-form div:nth-of-type(5){
+    margin-top: 32px;
 }
 

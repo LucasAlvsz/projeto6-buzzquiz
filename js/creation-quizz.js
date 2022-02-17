@@ -55,32 +55,47 @@ function createQuizzQuestions() {
     creationPage.innerHTML += `
     <div class="create-quizz-questions">
         <h1>Crie suas perguntas</h1>
-        <form> 
-            <p>Pergunta 1</p>
-            <div>
-                <input></input>
-                <input></input>
-            </div>
-            <p>Resposta correta</p>
-            <div>
-                <input></input>
-                <input></input>
-            </div>
-            <p>Respostas incorretas</p>
-            <div>
-                <input></input>
-                <input></input>
-            </div>
-            <div>
-                <input></input>
-                <input></input>
-            </div>
-            <div>
-                <input></input>
-                <input></input>
-            </div>
-        </form>
+        <div></div>
         <button onclick="createQuizzQuestions()">Prosseguir para criar níveis</button>
     </div>
 `;
+   showQuestions();
+}
+
+function showQuestions(){
+    const formPosition = document.querySelector(".create-quizz-questions div");
+    for(let i = 0; i < amountOf.questions; i++){
+        formPosition.innerHTML +=  `
+        <form class="questions-form"> 
+            <p>Pergunta ${i + 1}</p>
+            <div>
+                <input placeholder="Texto da pergunta"></input>
+                <input placeholder="Cor de fundo da pergunta"></input>
+            </div>
+            <p>Resposta correta</p>
+            <div>
+                <input placeholder="Resposta Correta"></input>
+                <input placeholder="URL da imagem"></input>
+            </div>
+            <p>Respostas incorretas</p>
+            <div>
+                <input placeholder="Resposta incorreta 1"></input>
+                <input placeholder="URL da imagem 1"></input>
+            </div>
+            <div>
+                <input placeholder="Resposta incorreta 2"></input>
+                <input placeholder="URL da imagem 2"></input>
+            </div>
+            <div>
+                <input  placeholder="Resposta incorreta 3"></input>
+                <input  placeholder="URL da imagem 3"></input>
+            </div>
+    </form>` 
+    }
+}
+
+function createQuizzLevels() {
+    const createQuizzInformation = document.querySelector(".quizz-creation-page .create-quizz-informations");
+    const creationPage = document.querySelector(".quizz-creation-page");
+    createQuizzInformation.style.display = "none";
 }
