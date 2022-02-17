@@ -1,7 +1,7 @@
 .question {
     background-color: #fff;
     width: 100%;
-    height: 436px;
+    min-height: 436px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,7 +53,8 @@
 }
 
 .alternative p {
-    height: 22px;
+    max-width: 163px;
+    min-height: 22px;
     font-weight: bold;
     font-size: 13px;
     line-height: 15px;
@@ -76,17 +77,22 @@
 .result img {
     width: 340px;
     height: 255px;
+    display: flex;
+    justify-content: center;
     margin: 9px;
 }
 
 .result b {
     width: 340px;
+    display: flex;
+    justify-content: start;
     font-weight: bold;
     font-size: 17px;
     line-height: 20px;
     color: #484848;
     margin-top: 5px;
     margin-bottom: 14px;
+    margin-left: 10px;
 }
 
 .result button {
@@ -110,6 +116,19 @@
     border: none;
     margin-top: 8px;
     margin-bottom: 64px;
+}
+
+.selected-alternative{
+
+}
+.correct-answer p{
+}
+.wrong-answer p{
+
+}
+
+.unselected{
+    opacity: 0.3;
 }
 
 @media (min-width: 700px) {
@@ -143,6 +162,7 @@
     }
 
     .alternative p {
+        max-width: 330px;
         font-size: 20px;
         line-height: 23px;
         margin-left: 3px;
