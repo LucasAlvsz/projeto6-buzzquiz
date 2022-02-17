@@ -53,21 +53,22 @@ function checkInformation() {
     amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
     amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
 
-    if(!(form.title.length >= 20 && form.title.length <= 65)){
-        alert("O titulo tem que ter entre 20 e 65 caracteres");
-    }
-    if(!(regularExpression.test(form.image))){
-        alert("Esta não é uma url valida");
-    }
-    if(amountOf.questions < 3){
-        alert("A quantidade de perguntas tem de ser ao menos 3");
-    }
-    if(amountOf.levels < 2){
-        alert("A quantidade de niveis tem de ser ao menos 2");
-    }
-    if((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)){
-        createQuizzQuestions()
-    }
+    // if(!(form.title.length >= 20 && form.title.length <= 65)){
+    //     alert("O titulo tem que ter entre 20 e 65 caracteres");
+    // }
+    // if(!(regularExpression.test(form.image))){
+    //     alert("Esta não é uma url valida");
+    // }
+    // if(amountOf.questions < 3){
+    //     alert("A quantidade de perguntas tem de ser ao menos 3");
+    // }
+    // if(amountOf.levels < 2){
+    //     alert("A quantidade de niveis tem de ser ao menos 2");
+    // }
+    // if((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)){
+        
+    // }
+    createQuizzQuestions();
 
 }
 
@@ -93,8 +94,8 @@ function showQuestions() {
         formPosition.innerHTML += `
         <form class="questions-form question-${i + 1}"> 
             <p>Pergunta ${i + 1}</p>
-            <p>Respostas incorretas</p>
             <p>Resposta correta</p>
+            <p>Respostas incorretas</p>
             <div>
                 <input id="question-title" placeholder="Texto da pergunta"></input>
                 <input id="question-color" placeholder="Cor de fundo da pergunta"></input>
@@ -117,7 +118,7 @@ function showQuestions() {
                 <input id="question-answer-4" placeholder="Resposta incorreta 3"></input>
                 <input id="question-url-4" placeholder="URL da imagem 3"></input>
             </div>
-    </form>`
+        </form>`
     }   
 }
 
@@ -167,24 +168,24 @@ function finalizeQuizzCreation() {
 
 function pickUpQuestions() {
     for(let i = 1; i <= amountOf.questions; i++){
-        questionObject.title = document.querySelector("#question-title").value;
-        questionObject.color = document.querySelector("#question-color").value;
+        questionObject.title = document.querySelector(`.question-${i} #question-title`).value;
+        questionObject.color = document.querySelector(`.question-${i} #question-color`).value;
         for(let j = 1; j <= 4; j++){
             if(j === 1){
-                answerObject.text = document.querySelector(`question-answer-${j}`).value;
-                answerObject.image = document.querySelector(`question-url-${j}`).value;
+                answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
+                answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
                 answerObject.isCorrectAnswer = true;
                 questionObject.answers.push(answerObject);
             }
             else {
-                answerObject.text = document.querySelector(`question-answer-${j}`).value;
-                answerObject.image = document.querySelector(`question-url-${j}`).value;
+                answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
+                answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
                 answerObject.isCorrectAnswer = false;
                 questionObject.answers.push(answerObject);
             }
-            form.questions.push(questionObject);
     }
-    createQuizzLevels();
+    form.questions.push(questionObject);
 }
+createQuizzLevels();
 }
 
