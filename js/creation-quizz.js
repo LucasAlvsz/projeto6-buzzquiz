@@ -87,7 +87,7 @@ function createQuizzQuestions() {
     <div class="create-quizz-questions">
         <h1>Crie suas perguntas</h1>
         <div></div>
-        <button onclick="createQuizzLevels();">Prosseguir para criar níveis</button>
+        <button onclick="pickUpQuestions();">Prosseguir para criar níveis</button>
     </div>
 `;
     showQuestions();
@@ -203,28 +203,25 @@ function finalizeQuizzCreation() {
 // }
 // }
 // Função original
-// function pickUpQuestions() {
-//     for(let i = 1; i <= amountOf.questions; i++){
-//         questionObject.title = document.querySelector(`.question-${i} #question-title`).value;
-//         questionObject.color = document.querySelector(`.question-${i} #question-color`).value;
-//         for(let j = 1; j <= 4; j++){
-//             if(j === 1){
-//                 answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
-//                 answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
-//                 answerObject.isCorrectAnswer = true;
-//                 questionObject.answers.push(answerObject);
-//             }
-//             else {
-//                 answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
-//                 answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
-//                 answerObject.isCorrectAnswer = false;
-//                 questionObject.answers.push(answerObject);
-//             }
-//     }
-//     form.questions.push(questionObject);
-// }
-
-// }
+function pickUpQuestions() {
+    for (let i = 1; i <= amountOf.questions; i++) {
+        questionObject.title = document.querySelector(`.question-${i} #question-title`).value;
+        questionObject.color = document.querySelector(`.question-${i} #question-color`).value;
+        for (let j = 1; j <= 4; j++) {
+            answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
+            answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
+            if (j == 1) {
+                answerObject.isCorrectAnswer = true;
+            }
+            else {
+                answerObject.isCorrectAnswer = false;
+            }
+            questionObject.answers.push(answerObject);
+        }
+        form.questions.push(questionObject);
+    }
+    createQuizzLevels();
+}
 
 function pickUpLevels() {
     for (let i = 1; i <= amountOf.levels; i++) {
@@ -232,30 +229,28 @@ function pickUpLevels() {
         levelObject.minValue = document.querySelector(`.level-${i} input:nth-of-type(2)`).value;
         levelObject.image = document.querySelector(`.level-${i} input:nth-of-type(3)`).value;
         levelObject.text = document.querySelector(`.level-${i} textarea`).value;
-        
+
         console.log(levelObject);
         form.levels.push(levelObject);
     }
-    for (let j = 0; j < amountOf.levels; j++){
-        if(form.levels[j].title.length < 10){
+    for (let j = 0; j < amountOf.levels; j++) {
+        if (form.levels[j].title.length < 10) {
             alert("O titulo do nível deve conter pelo menos 10 caracteres");
         }
-        if((form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')){
+        if ((form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')) {
             alert("A porcentagem de acerto minima deve ser um número entre 0 e 100");
         }
-        if(!(regularExpression.test(form.levels[j].image))){
+        if (!(regularExpression.test(form.levels[j].image))) {
             alert("Esta não é uma url valida");
         }
-        if(form.levels[j].text.length < 30){
+        if (form.levels[j].text.length < 30) {
             alert("A descrição do nível deve ter pelo menos 30 caracteres");
         }
-        if(!form.levels[j].minValue.includes(0)){
+        if (!form.levels[j].minValue.includes(0)) {
             alert("Pelo menos um dos níveis deve conter uma % de acerto igual a 0")
         }
-        
-      
     }
 
-    // finalizeQuizzCreation();
+    finalizeQuizzCreation();
 }
 
