@@ -2,7 +2,7 @@ let regularExpression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/(
 let amountOf = {
     levels: 0,
     questions: 0
-}
+};
 let form = {
     title: null,
     image: null,
@@ -13,18 +13,18 @@ let questionObject = {
     title: null,
     color: null,
     answers: []
-}
+};
 let levelObject = {
     title: null,
     image: null,
     text: null,
     minValue: null
-}
+};
 let answerObject = {
     text: null,
     image: null,
     isCorrectAnswer: null
-}
+};
 
 
 // Chama a tela de criação do quizz
@@ -166,50 +166,38 @@ function finalizeQuizzCreation() {
     </div>
     `
 }
-// Função Lucas
-// function pickUpQuestions() {
-//     console.log("entrei");
-//     for(let i = 1; i <= amountOf.questions; i++){
-//         questionObject.title = document.querySelector("#question-title").value;
-//         questionObject.color = document.querySelector("#question-color").value;
-//         for(let j = 1; j <= 4; j++){
-//             if(j === 1){
-//                 answerObject.text = document.querySelector(`#question-answer-${j}`).value;
-//                 answerObject.image = document.querySelector(`#question-url-${j}`).value;
-//                 answerObject.isCorrectAnswer = true;
-//                 console.log(questionObject, "questionObject");
-//                 console.log(answerObject, + "answerObject");
-//                 questionObject.answers.push(answerObject);
-//                 console.log(answerObject, + "answerObject");
 
-//             }
-//             else {
-//                 answerObject.text = document.querySelector(`#question-answer-${j}`.value);
-//                 answerObject.image = document.querySelector(`#question-url-${j}`.value);
-//                 answerObject.isCorrectAnswer = false;
-//                 console.log(questionObject, "questionObject");
-//                 console.log(answerObject, + "answerObject");
-//                 questionObject.answers.push(answerObject);
-//                 console.log(answerObject, + "answerObject");
-//             }
-//             form.questions.push(questionObject);
-//     }
-//     createQuizzLevels();
-// }
-// }
 // Função original
+let arrayTeste = []
+let array2 = []
+
 function pickUpQuestions() {
     for (let i = 0; i < amountOf.questions; i++) {
         questionObject.title = document.querySelector(`.question-${i + 1} #question-title`).value;
         questionObject.color = document.querySelector(`.question-${i + 1} #question-color`).value;
        
         for (let j = 0; j < 4; j++){
+            if(j === 0){
+                answerObject.isCorrectAnswer = true;
+            }
+            else {
+                answerObject.isCorrectAnswer = false;
+            }
             answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j + 1}`).value;
             answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j + 1}`).value;
-            answerObject.isCorrectAnswer = true;
-            questionObject.answers[j] = answerObject;
+            questionObject.answers[j] = [answerObject.text, answerObject.image, answerObject.isCorrectAnswer];
+            arrayTeste.push(questionObject.answers[j].slice())
     }
-        form.questions[i] = questionObject;
+        console.log(questionObject.title, questionObject.color, questionObject.answers);
+        console.log(arrayTeste, "<----- Array teste");
+        array2 = arrayTeste.pop() 
+        let resposta = {
+            text: array2[0],
+            image: array2[1],
+            isCorrectAnswer: array2[2]
+        }
+        questionObject.answers.push(resposta)
+        form.questions.push(questionObject.title, questionObject.color, (questionObject.answers[i]) =.pop());
     
 
     //     for (let j = 1; j <= 4; j++) {
@@ -231,11 +219,12 @@ function pickUpQuestions() {
     //     }
     //     form.questions.push(questionObject);
     }
-    createQuizzLevels();
+    // createQuizzLevels();
 }
 
 function pickUpLevels() {
     let levels = [];
+    let j = 0;
     for (let i = 1; i <= amountOf.levels; i++) {
         levelObject.title = document.querySelector(`.level-${i} input:first-of-type`).value;
         levelObject.minValue = document.querySelector(`.level-${i} input:nth-of-type(2)`).value;
@@ -243,7 +232,8 @@ function pickUpLevels() {
         levelObject.text = document.querySelector(`.level-${i} textarea`).value;
 
         console.log(levelObject);
-        form.levels.push(levelObject);
+        form.levels.push([levelObject.title, levelObject.minValue, levelObject.image, levelObject.text]);
+        
     }
     // for (let j = 0; j < amountOf.levels; j++) {
     //     if (form.levels[j].title.length < 10) {
