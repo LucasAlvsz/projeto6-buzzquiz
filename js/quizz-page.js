@@ -67,12 +67,9 @@ function selectAlternative(alternative) {
     setTimeout(() => {
         if (document.querySelector(`.q${count}`))
             document.querySelector(`.q${count}`).scrollIntoView({block: "center", behavior: "smooth" })
-        else{
-            // document.querySelector(`.q${count - 1} `).scrollIntoView({block: "start", behavior: "smooth" })
+        else
             showEndQuizz()
-        }
     }, TIMEAFTERSELECTINGALTERNATIVE);
-    
 }
 
 function showEndQuizz() {

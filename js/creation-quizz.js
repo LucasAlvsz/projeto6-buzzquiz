@@ -198,19 +198,34 @@ function finalizeQuizzCreation() {
 // }
 // }
 // Função original
+let Question = {
+    title: "",
+    color: "",
+    answers: [
+        {
+            text: "",
+            image: "",
+            isCorrectAnswer: ""
+        }
+    ]
+}
+
 function pickUpQuestions() {
-    for (let i = 0; i < amountOf.questions; i++) {
-        questionObject.title = document.querySelector(`.question-${i + 1} #question-title`).value;
-        questionObject.color = document.querySelector(`.question-${i + 1} #question-color`).value;
-       
-        for (let j = 0; j < 4; j++){
-            answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j + 1}`).value;
-            answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j + 1}`).value;
-            answerObject.isCorrectAnswer = true;
-            questionObject.answers[j] = answerObject;
-    }
-        form.questions[i] = questionObject;
     
+    for (let i = 0; i < 2; i++) {
+        let QuestionLog = JSON.parse(JSON.stringify(Question));
+        console.log(QuestionLog);
+        QuestionLog.title = document.querySelector(`.question-${i + 1} #question-title`).value;
+        QuestionLog.color = document.querySelector(`.question-${i + 1} #question-color`).value;
+        QuestionLog.answers.text = document.querySelector(`.question-${i + 1} #question-answer-${i + 1}`).value;
+        QuestionLog.answers.image = document.querySelector(`.question-${i + 1} #question-url-${i + 1}`).value;
+        QuestionLog.answers.isCorrectAnswer = true;
+
+        form.questions.push(QuestionLog)
+        console.log(form);        
+        // form.questions[i] = questionObject;
+    }
+    console.log("Fim for");
 
     //     for (let j = 1; j <= 4; j++) {
     //         answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
@@ -227,11 +242,11 @@ function pickUpQuestions() {
     //                 questionObject.answers.push(answerObject);
     //                 }
     //         }
-           
+
     //     }
     //     form.questions.push(questionObject);
-    }
-    createQuizzLevels();
+
+    // createQuizzLevels();
 }
 
 function pickUpLevels() {
