@@ -5,7 +5,7 @@ let count = 0
 let numberQuestions = 0
 let numberCorrectAnswers = 0
 let levels = []
-let indexLevel = null
+let indexLevel = 0
 let quizzLog
 let antiRepeater = 0
 function showPageQuizz(quizz) {
@@ -73,15 +73,18 @@ function selectAlternative(alternative) {
 }
 
 function showEndQuizz() {
+    let minValueLog = []
     if (antiRepeater == 0) {
         antiRepeater += 1
         let percentCorrectAnswers = Math.round((numberCorrectAnswers / numberQuestions) * 100)
+        console.log(percentCorrectAnswers);
         for (let i = 0; i < levels.length; i++) {
-            if (levels[i + 1]) {
-                if (percentCorrectAnswers >= levels[i].minValue && percentCorrectAnswers < levels[i + 1].minValue)
-                    indexLevel = i
-            }
-            else if (!indexLevel)
+            if (percentCorrectAnswers >= levels[i].minValue)
+                minValueLog.push(levels[i].minValue)
+        }
+        minValueLog.reduce((a, b) => Math.max(a, b))
+        for (let i = 0; i < levels.length; i++) {
+            if (levels[i].minValue == minValueLog[0])
                 indexLevel = i
         }
         document.querySelector(".all-questions").innerHTML +=
@@ -117,7 +120,7 @@ function restartQuizz(value) {
     numberQuestions = 0
     numberCorrectAnswers = 0
     levels = []
-    indexLevel = null
+    indexLevel = 0
     antiRepeater = 0
     if (value)
         showPageQuizz(quizzLog)
