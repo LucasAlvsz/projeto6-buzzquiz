@@ -29,7 +29,7 @@ let levelsObject = {
     title: null,
     image: null,
     text: null,
-    minValue: 0
+    minValue: null
 }
 
 // Chama a tela de criação do quizz
@@ -240,12 +240,20 @@ function pickUpLevels() {
         if(form.levels[j].title.length < 10){
             alert("O titulo do nível deve conter pelo menos 10 caracteres");
         }
-        if((form.levels[j].minValue < 0) || (form.levels[j].minValue > 100)){
+        if((form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')){
             alert("A porcentagem de acerto minima deve ser um número entre 0 e 100");
         }
         if(!(regularExpression.test(form.levels[j].image))){
             alert("Esta não é uma url valida");
         }
+        if(form.levels[j].text.length < 30){
+            alert("A descrição do nível deve ter pelo menos 30 caracteres");
+        }
+        if(!form.levels[j].minValue.includes(0)){
+            alert("Pelo menos um dos níveis deve conter uma % de acerto igual a 0")
+        }
+        
+      
     }
 
     // finalizeQuizzCreation();
