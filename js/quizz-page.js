@@ -66,10 +66,13 @@ function selectAlternative(alternative) {
     count += 1
     setTimeout(() => {
         if (document.querySelector(`.q${count}`))
-            document.querySelector(`.q${count}`).scrollIntoView({ behavior: "smooth" })
-        else
+            document.querySelector(`.q${count}`).scrollIntoView({block: "center", behavior: "smooth" })
+        else{
+            // document.querySelector(`.q${count - 1} `).scrollIntoView({block: "start", behavior: "smooth" })
             showEndQuizz()
+        }
     }, TIMEAFTERSELECTINGALTERNATIVE);
+    
 }
 
 function showEndQuizz() {
@@ -77,15 +80,14 @@ function showEndQuizz() {
     if (antiRepeater == 0) {
         antiRepeater += 1
         let percentCorrectAnswers = Math.round((numberCorrectAnswers / numberQuestions) * 100)
-        console.log(percentCorrectAnswers);
         for (let i = 0; i < levels.length; i++) {
             if (percentCorrectAnswers >= levels[i].minValue)
                 minValueLog.push(levels[i].minValue)
         }
-        minValueLog.reduce((a, b) => Math.max(a, b))
+        minValueLog = minValueLog.reduce((a, b) => Math.max(a, b))
         for (let i = 0; i < levels.length; i++) {
-            if (levels[i].minValue == minValueLog[0])
-                indexLevel = i
+            if (levels[i].minValue == minValueLog)
+                indexLevel = i; 
         }
         document.querySelector(".all-questions").innerHTML +=
             `
@@ -105,7 +107,7 @@ function showEndQuizz() {
         <button onclick="backToHomePage()">Voltar para home</button>
     </div>
     `
-        document.querySelector(".result").scrollIntoView({ behavior: "smooth" })
+        document.querySelector(".result .question").scrollIntoView({block: "center", behavior: "smooth" })
     }
 }
 

@@ -16,6 +16,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../imgs/meianoiteeuteconto.jpg);
     background-size: cover;
     font-weight: normal;
@@ -50,6 +51,9 @@
     width: 163px;
     height: 113px;
     margin-top: 13px;
+}
+.alternative img:hover {
+    cursor: pointer;
 }
 
 .alternative p {
@@ -103,6 +107,10 @@
     line-height: 21px;
 }
 
+.result button:hover {
+    cursor: pointer;
+}
+
 .result button:nth-child(2) {
     background: #EC362D;
     color: #FFF5F4;
@@ -116,19 +124,6 @@
     border: none;
     margin-top: 8px;
     margin-bottom: 64px;
-}
-
-.selected-alternative{
-
-}
-.correct-answer p{
-}
-.wrong-answer p{
-
-}
-
-.unselected{
-    opacity: 0.3;
 }
 
 @media (min-width: 700px) {
