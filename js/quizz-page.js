@@ -9,6 +9,10 @@ let indexLevel = 0
 let quizzLog
 let antiRepeater = 0
 function showPageQuizz(quizz) {
+    if (typeof(quizz) == "number"){
+        quizz = JSON.parse(localStorage.getItem(quizz))
+    }
+    console.log(quizz);
     quizzLog = quizz
     numberQuestions = quizz.questions.length
     levels = quizz.levels

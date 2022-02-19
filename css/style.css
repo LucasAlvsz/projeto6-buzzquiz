@@ -10,7 +10,7 @@ body {
 
 .hidden {
     display: none;
-    visibility: collapse;
+    /* visibility: collapse; */
 }
 
 header {
@@ -34,14 +34,19 @@ header p {
 }
 
 main {
+    /* background-color: burlywood; */
     width: 100%;
     height: calc(100% - 69px);
-    overflow: auto;
     margin-top: 69px;
-}
-
-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+nav {
+    /* overflow: auto; */
+    /* width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; */
+} 
