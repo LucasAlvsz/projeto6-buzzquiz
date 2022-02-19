@@ -1,4 +1,5 @@
 let regularExpression = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?|magnet:\?xt=urn:btih:/;
+let colorRegularExpression = /^#[0-9A-F]{6}$/i;
 let amountOf = {
     levels: 0,
     questions: 0
@@ -9,22 +10,8 @@ let form = {
     questions: [],
     levels: []
 };
-let questionObject = {
-    title: null,
-    color: null,
-    answers: []
-};
-let levelObject = {
-    title: null,
-    image: null,
-    text: null,
-    minValue: null
-};
-let answerObject = {
-    text: null,
-    image: null,
-    isCorrectAnswer: null
-};
+
+
 
 
 // Chama a tela de criação do quizz
@@ -67,7 +54,7 @@ function checkInformation() {
     //     alert("A quantidade de niveis tem de ser ao menos 2");
     // }
     // if((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)){
-
+        
     // }
     createQuizzQuestions();
 
@@ -167,74 +154,90 @@ function finalizeQuizzCreation() {
     `
 }
 
-// Função original
-let arrayTeste = []
-let array2 = []
 
 function pickUpQuestions() {
-    for (let i = 0; i < amountOf.questions; i++) {
+
+    for (let i = 0; i < 2; i++) {
+        let questionObject = {
+            title: null,
+            color: null,
+            answers: []
+        };
         questionObject.title = document.querySelector(`.question-${i + 1} #question-title`).value;
         questionObject.color = document.querySelector(`.question-${i + 1} #question-color`).value;
-       
-        for (let j = 0; j < 4; j++){
-            if(j === 0){
+        for (let j = 1; j <= 4; j++) {
+            let answerObject = {
+                text: null,
+                image: null,
+                isCorrectAnswer: null
+            };
+            answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j}`).value;
+            answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j}`).value;
+            if (j === 1) {
                 answerObject.isCorrectAnswer = true;
             }
             else {
                 answerObject.isCorrectAnswer = false;
             }
-            answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j + 1}`).value;
-            answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j + 1}`).value;
-            questionObject.answers[j] = [answerObject.text, answerObject.image, answerObject.isCorrectAnswer];
-            arrayTeste.push(questionObject.answers[j].slice())
-    }
-        console.log(questionObject.title, questionObject.color, questionObject.answers);
-        console.log(arrayTeste, "<----- Array teste");
-        array2 = arrayTeste.pop() 
-        let resposta = {
-            text: array2[0],
-            image: array2[1],
-            isCorrectAnswer: array2[2]
+            if(answerObject.text){
+            questionObject.answers.push(answerObject);
+            }
         }
-        questionObject.answers.push(resposta)
-        form.questions.push(questionObject.title, questionObject.color, (questionObject.answers[i]) =.pop());
-    
-
-    //     for (let j = 1; j <= 4; j++) {
-    //         answerObject.text = document.querySelector(`.question-${i} #question-answer-${j}`).value;
-    //         answerObject.image = document.querySelector(`.question-${i} #question-url-${j}`).value;
-    //         if (j == 1) {
-    //             answerObject.isCorrectAnswer = true;
-    //             if (answerObject.text){
-    //                 questionObject.answers.push(answerObject);
-    //                 }
-    //         }
-    //         else {
-    //             answerObject.isCorrectAnswer = false;
-    //             if (answerObject.text){
-    //                 questionObject.answers.push(answerObject);
-    //                 }
-    //         }
-           
-    //     }
-    //     form.questions.push(questionObject);
+        form.questions.push(questionObject);
     }
-    // createQuizzLevels();
+
+    // for(let k = 0; k < amountOf.questions; k++){
+    //     if(form.questions[k].title.length < 20){
+    //         alert("O titulo da questão deve ter pelo menos 20 caracteres");
+    //     }
+        // if(!colorRegularExpression.test(form.questions[k].color)){
+        //     alert("A cor da pergunta deve ser passada em formato hexadecimal");
+        // }
+        // if(!form.questions[k].title){
+        //     alert("O texto da questão não pode estar vazio");
+        // }
+        // for(let f = 0; f < 4; f++){
+        //     if(!(regularExpression.test(form.questions[k].levels[f].image))){
+        //         alert("A imagem da resposta deve ter uma url valida");
+        //     }
+        //     if(!form.questions[k].levels[f].isCorrectAnswer.includes(true)){
+        //         alert("A questão deve conter ao menos uma respota correta");
+        //     }
+        //     if(form.questions[k].levels[f].length < 2){
+        //         alert("A questão deve conter ao menos duas respostas");
+        //     }
+        //     if((form.questions[k].title.length > 20) && (colorRegularExpression.test(form.questions[k].color)) && (form.questions[k].title) && (regularExpression.test(form.questions[k].levels[f].image)) && (form.questions[k].levels[f].isCorrectAnswer.includes(true)) && (form.questions[k].levels[f].length >= 2)){
+        //         createQuizzLevels();
+        //     }
+        // }
+        // form.questions = [];
+    // }
+
+
+
+
+   
 }
 
 function pickUpLevels() {
-    let levels = [];
-    let j = 0;
+
     for (let i = 1; i <= amountOf.levels; i++) {
+        let levelObject = {
+            title: null,
+            image: null,
+            text: null,
+            minValue: null
+        };
+
         levelObject.title = document.querySelector(`.level-${i} input:first-of-type`).value;
         levelObject.minValue = document.querySelector(`.level-${i} input:nth-of-type(2)`).value;
         levelObject.image = document.querySelector(`.level-${i} input:nth-of-type(3)`).value;
         levelObject.text = document.querySelector(`.level-${i} textarea`).value;
 
-        console.log(levelObject);
-        form.levels.push([levelObject.title, levelObject.minValue, levelObject.image, levelObject.text]);
-        
+        form.levels.push(levelObject);
     }
+
+
     // for (let j = 0; j < amountOf.levels; j++) {
     //     if (form.levels[j].title.length < 10) {
     //         alert("O titulo do nível deve conter pelo menos 10 caracteres");
@@ -251,8 +254,11 @@ function pickUpLevels() {
     //     if (!form.levels[j].minValue.includes(0)) {
     //         alert("Pelo menos um dos níveis deve conter uma % de acerto igual a 0")
     //     }
+    //     if ((form.levels[j].title.length >= 10) && (!(form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')) && (regularExpression.test(form.levels[j].image) && (form.levels[j].text.length >= 30) && (form.levels[j].minValue.includes(0)))) {
+    //         finalizeQuizzCreation();
+    //     }
+    //     form.levels = [];
     // }
 
-    // finalizeQuizzCreation();
 }
 
