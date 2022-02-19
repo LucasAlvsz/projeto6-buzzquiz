@@ -11,7 +11,6 @@ let form = {
     levels: []
 };
 
-
 function createQuizz() {
     const creationPage = document.querySelector(".quizz-creation-page");
     const navHome = document.querySelector("main nav");
@@ -75,7 +74,7 @@ function showQuestions() {
         formPosition.innerHTML += `
         <form class="questions-form question-${i + 1} small-size"> 
             <p class="question-tittle">Pergunta ${i + 1}</p>
-            <img onclick="openEditQuestions(this, 'question-${i+1}')" src="imgs/edit.svg"></img>
+            <img onclick="openEditQuestions(this, 'question-${i + 1}')" src="imgs/edit.svg"></img>
             <p>Resposta correta</p>
             <p>Respostas incorretas</p>
             <div>
@@ -131,7 +130,7 @@ function finalizeQuizzCreation() {
     const createQuizzInformation = document.querySelector(".create-quizz-levels");
     const creationPage = document.querySelector(".quizz-creation-page");
     createQuizzInformation.style.display = "none";
-    
+
     creationPage.innerHTML += `
     <div class="finalize-creation">
     <h1>Seu quizz está pronto!</h1>
@@ -143,7 +142,7 @@ function finalizeQuizzCreation() {
     const finalizeDisplay = document.querySelector(".finalize-quizz");
     finalizeDisplay.style.backgroundImage = `linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(${form.image})`;
     finalizeDisplay.innerHTML += `<p>${form.title}</p>`;
-    
+
 }
 
 
@@ -170,7 +169,7 @@ function pickUpQuestions() {
             else {
                 answerObject.isCorrectAnswer = false;
             }
-            if (answerObject.text) {
+            if (answerObject.image) {
                 questionObject.answers.push(answerObject);
             }
         }
@@ -188,28 +187,33 @@ function pickUpQuestions() {
     //     if (!colorRegularExpression.test(form.questions[k].color)) {
     //         alert("A cor da pergunta deve ser passada em formato hexadecimal");
     //         form.questions = [];
-    // }
-
-    // for (let f = 0; f < 4; f++) {
-    //     if (form.questions[k].answers.text == undefined) {
-    //         alert("O texto da questão não pode estar vazio");
     //     }
 
-    //     if (!(regularExpression.test(form.questions[k].levels[f].image)) || form.questions[k].levels[f].image == undefined) {
-    //         alert("A imagem da resposta deve ter uma url valida");
-    //     }
-    //     if (!form.questions[k].levels[f].isCorrectAnswer.includes(true)) {
-    //         alert("A questão deve conter ao menos uma respota correta");
-    //     }
-    //     if (form.questions[k].levels[f].length < 2) {
-    //         alert("A questão deve conter ao menos duas respostas");
-    //     }
-    //     if ((form.questions[k].title.length > 20) && (colorRegularExpression.test(form.questions[k].color)) && (form.questions[k].title) && (regularExpression.test(form.questions[k].levels[f].image)) && (form.questions[k].levels[f].isCorrectAnswer.includes(true)) && (form.questions[k].levels[f].length >= 2)) {
-    //         createQuizzLevels();
-    //     }
+    //     for (let f = 0; f < 4; f++) {
+    //         if (form.questions[k].answers[f].text == "") {
+    //             alert("O texto da questão não pode estar vazio");
+    //             form.questions = [];
+    //         }
 
-    // }
-    // }
+            // if (!(regularExpression.test(form.questions[k].levels[f].image)) || form.questions[k].levels[f].image == undefined) {
+            //     alert("A imagem da resposta deve ter uma url valida");
+            //     form.questions = [];
+            // }
+            // if (!form.questions[k].levels[f].isCorrectAnswer.includes(true)) {
+            //     alert("A questão deve conter ao menos uma respota correta");
+            //     form.questions = [];
+            // }
+            // if (form.questions[k].levels[f].length < 2) {
+            //     alert("A questão deve conter ao menos duas respostas");
+            //     form.questions = [];
+            // }
+            // if ((form.questions[k].title.length > 20) && (colorRegularExpression.test(form.questions[k].color)) && (form.questions[k].title) && (regularExpression.test(form.questions[k].levels[f].image)) && (form.questions[k].levels[f].isCorrectAnswer.includes(true)) && (form.questions[k].levels[f].length >= 2)) {
+            //     createQuizzLevels();
+            // }
+        // }
+
+
+
     createQuizzLevels()
 }
 
@@ -262,21 +266,19 @@ function openEditQuestions(question, selected) {
     parent.classList.remove("small-size");
     parent.querySelector("img").style.visibility = "hidden";
 
-    for(let i = 0; i < amountOf.questions; i++){
+    for (let i = 0; i < amountOf.questions; i++) {
         questionsArray.push(`question-${i + 1}`);
     }
 
     let index = questionsArray.indexOf(selected);
     questionsArray.splice(index, 1);
-   
-    questionsArray.forEach( (element) => {
-        const elementNode = document.querySelector(`.${element}`);
-        console.log(elementNode);
 
+    questionsArray.forEach((element) => {
+        const elementNode = document.querySelector(`.${element}`);
         elementNode.querySelector("p:first-of-type").style.top = "4px";
         elementNode.classList.add("small-size");
         elementNode.querySelector("img").style.visibility = "visible";
     })
-    
+
 }
 

@@ -8,7 +8,6 @@ function pickUpAllQuizzes() {
 }
 function aleatorio(teste){
     quizzes = teste.data
-    console.log(quizzes);
     pickUpUserQuizzes()
 }
 function pickUpUserQuizzes() {

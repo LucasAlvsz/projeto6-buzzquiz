@@ -135,4 +135,10 @@ function backToHomePage() {
     document.querySelector("nav").classList.remove("hidden")
     document.querySelector("nav").scrollIntoView()
     const creationPage = document.querySelector(".quizz-creation-page").innerHTML = '';
+    form = {
+        title: null,
+        image: null,
+        questions: [],
+        levels: []
+    };
 }

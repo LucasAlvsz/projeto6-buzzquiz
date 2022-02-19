@@ -200,7 +200,7 @@
     height: 181px;
     margin-top: 29px;
     border-radius: 5px;
-    background-size: contain;   
+    background-size: cover;   
 }
 .finalize-quizz p {
     height: 54px;
