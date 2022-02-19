@@ -68,6 +68,7 @@ const myQuizz = {
 }
 
 function sendAndSaveUserQuizz(quizzUser) {
+	console.log(quizzUser);
 	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzUser)
 		.then(response => {
 			userQuizz = JSON.stringify(quizzUser)

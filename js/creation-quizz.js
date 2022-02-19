@@ -104,7 +104,7 @@ function createQuizzLevels() {
     <div class="create-quizz-levels">
         <h1>Agora, decida os níveis!</h1>
         <div></div>
-        <button onclick="pickUpLevels(), sendUserQuizz(${form})">Finalizar Quizz</button>
+        <button onclick="pickUpLevels()">Finalizar Quizz</button>
     </div>
    `;
     showLevels();
@@ -234,7 +234,7 @@ function pickUpQuestions() {
 }
 
 function pickUpLevels() {
-
+    sendAndSaveUserQuizz(form);
     for (let i = 1; i <= amountOf.levels; i++) {
         let levelObject = {
             title: null,
