@@ -104,7 +104,7 @@ function createQuizzLevels() {
     <div class="create-quizz-levels">
         <h1>Agora, decida os níveis!</h1>
         <div></div>
-        <button onclick="pickUpLevels()">Finalizar Quizz</button>
+        <button onclick="pickUpLevels(), sendUserQuizz(${form})">Finalizar Quizz</button>
     </div>
    `;
     showLevels();

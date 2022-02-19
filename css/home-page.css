@@ -1,12 +1,14 @@
-.user-quizzes{
+.user-quizzes {
     /* padding: 0 18px; */
 }
-.user-quizzes .title{
+
+.user-quizzes .title {
     display: flex;
     justify-content: space-between;
     margin-top: 34px;
 }
-.title p{
+
+.title p {
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
@@ -14,9 +16,9 @@
     margin: 4px 0 16px;
 }
 
-.title ion-icon{
+.title ion-icon {
     font-size: 31px;
-    color:#EC362D;
+    color: #EC362D;
 }
 
 .my-quizzes {
@@ -59,7 +61,8 @@
     margin-top: 31px;
     margin-bottom: 35px;
 }
-.no-quiz-created span{
+
+.no-quiz-created span {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,7 +100,8 @@
     flex-direction: column;
     margin-top: 38px;
 }
-.all-quizzes p.title{
+
+.all-quizzes p.title {
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
@@ -106,6 +110,7 @@
 }
 
 .quizz {
+    position: relative;
     width: 340px;
     height: 181px;
     display: flex;
@@ -117,7 +122,6 @@
     margin-bottom: 14px;
     padding: 10px 20px;
     color: #FFFFFF;
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(../imgs/conflict.jpg);
     background-size: cover;
 }
 
@@ -125,29 +129,54 @@
     cursor: pointer;
 }
 
-@media (min-width: 750px) {
-    .user-quizzes{
+ul.user-quizzes-list .quizz span{
+    top: 9px;
+    right: 0;
+    position: absolute;
+    width: 43px;
+    height: 87px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #EC362D;
+    border-radius: 10px 0px 0px 11px;
+}
+
+.quizz span ion-icon {
+    font-size: 23px;
+    margin-top: 16px;
+    color: #fff;
+}
+
+.quizz span svg {
+    margin-top: 16px;
+}
+
+@media (min-width: 1100px) {
+    .user-quizzes {
         width: 100%;
-        padding: 0 10px;
         display: flex;
-        align-items: center;
         flex-direction: column;
     }
-    .user-quizzes span:nth-child(1){
-       width: 100%;
-       max-width: 1065px;
+
+    .user-quizzes span:nth-child(1) {
+        width: 100%;
+        max-width: 1065px;
     }
-    .user-quizzes .title{
+
+    .user-quizzes .title {
         margin-top: 65px;
         justify-content: start;
     }
-    .user-quizzes .title ion-icon{
+
+    .user-quizzes .title ion-icon {
         margin-left: 17px;
     }
-    .title p{
+
+    .title p {
         margin-bottom: 12px;
     }
-    
+
     .user-quizzes-list {
         max-width: 1065px;
         display: flex;
@@ -170,6 +199,7 @@
         max-width: 1065px;
         flex-wrap: wrap;
     }
+
     .quizz {
         margin-right: 15px;
     }
