@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: all 1s;
 }
 
 .quizz-creation-page h1 {
@@ -59,6 +60,10 @@
     font-size: 18px;
 }
 
+.quizz-creation-page button:hover {
+    cursor: pointer;
+}
+
 .create-quizz-informations {
     display: flex;
     align-items: center;
@@ -89,14 +94,27 @@
     margin-top: 46px;
     margin-bottom: 62px;
 }
+.small-size {
+    height: 74px;
+    overflow: hidden;
+}
 
 .questions-form p {
     position: absolute;
     left: 17px;
 }
+.questions-form img {
+    position: absolute;
+    top: 27px;
+    right: 14px;
+    font-size: 26px;
+}
+.questions-form img:hover {
+    cursor: pointer;
+}
 
 .questions-form p:first-of-type {
-    top: 10px;
+    top: 4px;
 }
 
 .questions-form p:nth-of-type(2) {
@@ -108,7 +126,7 @@
 }
 
 .questions-form div:first-of-type {
-    margin-top: 45px;
+    margin-top: 60px;
 }
 
 .questions-form div:nth-of-type(2) {
@@ -131,7 +149,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    
+
 }
 
 .create-quizz-levels button {
@@ -176,11 +194,25 @@
     align-items: center;
 }
 
-.finalize-creation img {
+.finalize-quizz {
+    position: relative;
     width: 340px;
     height: 181px;
     margin-top: 29px;
     border-radius: 5px;
+    background-size: contain;   
+}
+.finalize-quizz p {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 20px;
+    margin-bottom: -13px;
+    bottom: 10px;
+    color: #FFFFFF;
+    font-size: 19px;
+    font-weight: 400;
 }
 
 .finalize-creation button:first-of-type {
@@ -193,13 +225,12 @@
     margin-top: 9px;
     background-color: #FAFAFA;
     color: #818181;
-}
-
-
-
-.selected {
 
 }
+
+
+
+.selected {}
 
 @media (min-width: 700px) {
 
@@ -210,31 +241,48 @@
     .quizz-creation-page input {
         width: 564px;
     }
+
     .quizz-creation-page form {
         width: 600px;
     }
+
     .quizz-creation-page button {
         width: 369px;
         font-size: 21px;
         margin-top: 85px;
     }
+
     .create-quizz-questions button {
         width: 354px;
     }
+
     .create-quizz-levels textarea {
         width: 564px;
         height: 46px;
         padding-top: 10px;
     }
+
     .create-quizz-levels button {
         width: 324px;
     }
+
     .finalize-creation img {
-       width: 500px;
-       height: 266px;
-       margin-top: 46px;
+        width: 500px;
+        height: 266px;
+        margin-top: 46px;
     }
+
     .finalize-creation button:first-of-type {
         margin-top: 45px;
+    }
+
+    .finalize-quizz {
+        width: 500px;
+        height: 266px;
+    }
+    .finalize-quizz p {
+        bottom: 20px;
+        font-size: 23px;
+        
     }
 }

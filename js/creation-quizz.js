@@ -32,7 +32,7 @@ function createQuizz() {
 
 function checkInformation() {
     form.title = document.querySelector(".create-quizz-informations input:first-child").value;
-    form.image = "https://th.bing.com/th/id/R.134275efe2edde9c1b2f54a3b41d7e9b?rik=yPQwMnuA0FjmbA&riu=http%3a%2f%2fferramentasinteligentes.com.br%2fwp-content%2fuploads%2f2015%2f06%2fwater-209901_1280.jpg&ehk=xnl0YRcaEQ96ra5oHwKkHhaJ9GeUczedE05Ahfq8UN0%3d&risl=&pid=ImgRaw&r=0"                                                                       //document.querySelector(".create-quizz-informations input:nth-child(2)").value;
+    form.image = document.querySelector(".create-quizz-informations input:nth-child(2)").value;
     amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
     amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
 
@@ -68,14 +68,14 @@ function createQuizzQuestions() {
 `;
     showQuestions();
 }
-
 function showQuestions() {
     const formPosition = document.querySelector(".create-quizz-questions div");
     const form = document.querySelector("questions-form");
     for (let i = 0; i < amountOf.questions; i++) {
         formPosition.innerHTML += `
-        <form class="questions-form question-${i + 1}"> 
+        <form class="questions-form question-${i + 1} small-size"> 
             <p class="question-tittle">Pergunta ${i + 1}</p>
+            <img onclick="openEditQuestions(this, 'question-${i+1}')" src="imgs/edit.svg"></img>
             <p>Resposta correta</p>
             <p>Respostas incorretas</p>
             <div>
@@ -131,14 +131,19 @@ function finalizeQuizzCreation() {
     const createQuizzInformation = document.querySelector(".create-quizz-levels");
     const creationPage = document.querySelector(".quizz-creation-page");
     createQuizzInformation.style.display = "none";
+    
     creationPage.innerHTML += `
     <div class="finalize-creation">
     <h1>Seu quizz está pronto!</h1>
-    <img src="${form.image}"></img>
+    <div class="finalize-quizz"></div>
     <button>Acessar Quizz</button>
     <button onclick="backToHomePage()">Voltar pra home</button>
     </div>
-    `
+    `;
+    const finalizeDisplay = document.querySelector(".finalize-quizz");
+    finalizeDisplay.style.backgroundImage = `linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(${form.image})`;
+    finalizeDisplay.innerHTML += `<p>${form.title}</p>`;
+    
 }
 
 
@@ -250,7 +255,28 @@ function pickUpLevels() {
     finalizeQuizzCreation();
 }
 
-function editQuestions() {
+function openEditQuestions(question, selected) {
+    let questionsArray = [];
+    const parent = question.parentNode;
+    parent.querySelector("p:first-of-type").style.top = "10px";
+    parent.classList.remove("small-size");
+    parent.querySelector("img").style.visibility = "hidden";
 
+    for(let i = 0; i < amountOf.questions; i++){
+        questionsArray.push(`question-${i + 1}`);
+    }
+
+    let index = questionsArray.indexOf(selected);
+    questionsArray.splice(index, 1);
+   
+    questionsArray.forEach( (element) => {
+        const elementNode = document.querySelector(`.${element}`);
+        console.log(elementNode);
+
+        elementNode.querySelector("p:first-of-type").style.top = "4px";
+        elementNode.classList.add("small-size");
+        elementNode.querySelector("img").style.visibility = "visible";
+    })
+    
 }
 
