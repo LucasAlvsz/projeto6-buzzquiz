@@ -29,7 +29,7 @@ function pickUpUserQuizzes() {
             `
             <div class="title">
                 <p>Seus Quizzes</p>
-                <ion-icon name="add-circle-sharp"></ion-icon>
+                <ion-icon onclick="createQuizz()" name="add-circle-sharp"></ion-icon>
             </div>
             `
     }

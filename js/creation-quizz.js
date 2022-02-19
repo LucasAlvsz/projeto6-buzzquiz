@@ -179,26 +179,34 @@ function pickUpQuestions() {
 
 
 
-    // for (let k = 0; k < amountOf.questions; k++) {
-    //     if (form.questions[k].title.length < 20) {
-    //         alert("O titulo da questão deve ter pelo menos 20 caracteres");
-    //         form.questions = [];
-    //     }
-    //     if (!colorRegularExpression.test(form.questions[k].color)) {
-    //         alert("A cor da pergunta deve ser passada em formato hexadecimal");
-    //         form.questions = [];
-    //     }
+    form.questions.forEach((question) =>{
+        if (question.title.length < 20) {
+            alert("O titulo da questão deve ter pelo menos 20 caracteres");
+            form.questions = [];
+        }
+        if (!colorRegularExpression.test(question.color)) {
+            alert("A cor da pergunta deve ser passada em formato hexadecimal");
+            form.questions = [];
+        }
 
-    //     for (let f = 0; f < 4; f++) {
-    //         if (form.questions[k].answers[f].text == "") {
-    //             alert("O texto da questão não pode estar vazio");
-    //             form.questions = [];
-    //         }
+        question.answers.forEach((answer) =>{
+            if (answer.text == "") {
+                alert("O texto da questão não pode estar vazio");
+                form.questions = [];
+            }
 
-            // if (!(regularExpression.test(form.questions[k].levels[f].image)) || form.questions[k].levels[f].image == undefined) {
-            //     alert("A imagem da resposta deve ter uma url valida");
-            //     form.questions = [];
-            // }
+            if (!(regularExpression.test(answer.image)) || answer.image == undefined) {
+                    alert("A imagem da resposta deve ter uma url valida");
+                    form.questions = [];
+            }
+        });
+    })
+        
+
+        // for (let f = 0; f < 4; f++) {
+        //    
+
+            // 
             // if (!form.questions[k].levels[f].isCorrectAnswer.includes(true)) {
             //     alert("A questão deve conter ao menos uma respota correta");
             //     form.questions = [];
@@ -214,7 +222,7 @@ function pickUpQuestions() {
 
 
 
-    createQuizzLevels()
+    // createQuizzLevels()
 }
 
 function pickUpLevels() {

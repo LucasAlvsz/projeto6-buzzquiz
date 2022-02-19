@@ -67,7 +67,7 @@ const myQuizz = {
 	]
 }
 
-//axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", myQuizz).then(deubom)
+axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", myQuizz).then(deubom)
 
 function deubom(quizzesArray) {
 	console.log("dale");
