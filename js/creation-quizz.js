@@ -156,20 +156,19 @@ function finalizeQuizzCreation() {
 
 
 function pickUpQuestions() {
-
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < amountOf.questions; i++) {
         let questionObject = {
-            title: null,
-            color: null,
+            title: '',
+            color: '',
             answers: []
         };
         questionObject.title = document.querySelector(`.question-${i + 1} #question-title`).value;
         questionObject.color = document.querySelector(`.question-${i + 1} #question-color`).value;
         for (let j = 1; j <= 4; j++) {
             let answerObject = {
-                text: null,
-                image: null,
-                isCorrectAnswer: null
+                text: '',
+                image: '',
+                isCorrectAnswer: ''
             };
             answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j}`).value;
             answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j}`).value;
@@ -185,38 +184,38 @@ function pickUpQuestions() {
         }
         form.questions.push(questionObject);
     }
+    createQuizzLevels();
+    
+    form.questions.forEach()
+
 
     // for(let k = 0; k < amountOf.questions; k++){
     //     if(form.questions[k].title.length < 20){
     //         alert("O titulo da questão deve ter pelo menos 20 caracteres");
+      
     //     }
-        // if(!colorRegularExpression.test(form.questions[k].color)){
-        //     alert("A cor da pergunta deve ser passada em formato hexadecimal");
-        // }
-        // if(!form.questions[k].title){
-        //     alert("O texto da questão não pode estar vazio");
-        // }
-        // for(let f = 0; f < 4; f++){
-        //     if(!(regularExpression.test(form.questions[k].levels[f].image))){
-        //         alert("A imagem da resposta deve ter uma url valida");
-        //     }
-        //     if(!form.questions[k].levels[f].isCorrectAnswer.includes(true)){
-        //         alert("A questão deve conter ao menos uma respota correta");
-        //     }
-        //     if(form.questions[k].levels[f].length < 2){
-        //         alert("A questão deve conter ao menos duas respostas");
-        //     }
-        //     if((form.questions[k].title.length > 20) && (colorRegularExpression.test(form.questions[k].color)) && (form.questions[k].title) && (regularExpression.test(form.questions[k].levels[f].image)) && (form.questions[k].levels[f].isCorrectAnswer.includes(true)) && (form.questions[k].levels[f].length >= 2)){
-        //         createQuizzLevels();
-        //     }
-        // }
-        // form.questions = [];
-    // }
+    //     if(!colorRegularExpression.test(form.questions[k].color)){
+    //         alert("A cor da pergunta deve ser passada em formato hexadecimal");
+    //     }
+       
+    //     // for(let f = 0; f < 4; f++){
+    //              // if(!form.questions[k].title){
+    //     //     alert("O texto da questão não pode estar vazio");
+    //     // }
 
-
-
-
-   
+    //     //     if(!(regularExpression.test(form.questions[k].levels[f].image))){
+    //     //         alert("A imagem da resposta deve ter uma url valida");
+    //     //     }
+    //     //     if(!form.questions[k].levels[f].isCorrectAnswer.includes(true)){
+    //     //         alert("A questão deve conter ao menos uma respota correta");
+    //     //     }
+    //     //     if(form.questions[k].levels[f].length < 2){
+    //     //         alert("A questão deve conter ao menos duas respostas");
+    //     //     }
+    //     //     if((form.questions[k].title.length > 20) && (colorRegularExpression.test(form.questions[k].color)) && (form.questions[k].title) && (regularExpression.test(form.questions[k].levels[f].image)) && (form.questions[k].levels[f].isCorrectAnswer.includes(true)) && (form.questions[k].levels[f].length >= 2)){
+    //     //     }
+    //     // }
+    // } 
 }
 
 function pickUpLevels() {
@@ -236,6 +235,7 @@ function pickUpLevels() {
 
         form.levels.push(levelObject);
     }
+    
 
 
     // for (let j = 0; j < amountOf.levels; j++) {
