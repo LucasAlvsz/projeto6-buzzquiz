@@ -1,20 +1,68 @@
+.user-quizzes{
+    /* padding: 0 18px; */
+}
+.user-quizzes .title{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 34px;
+}
+.title p{
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    margin: 4px 0 16px;
+}
+
+.title ion-icon{
+    font-size: 31px;
+    color:#EC362D;
+}
+
 .my-quizzes {
     width: 100%;
     padding: 0 18px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-quizzes span {
+    width: 340px;
+    max-width: 340px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 34px;
+}
+
+.my-quizzes span p {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.my-quizzes span img {
+    width: 35px;
+    height: 30px;
+    margin-bottom: 13px;
 }
 
 .no-quiz-created {
     width: 100%;
     height: 181px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     border: 1px dashed #D4D4D4;
     border-radius: 5px;
     margin-top: 31px;
     margin-bottom: 35px;
+}
+.no-quiz-created span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .no-quiz-created p {
@@ -40,20 +88,21 @@
     color: #EC362D;
 }
 
-.no-quiz-created button:hover{
+.no-quiz-created button:hover {
     cursor: pointer;
 }
 
 .all-quizzes {
     display: flex;
     flex-direction: column;
+    margin-top: 38px;
 }
-
-.all-quizzes span p{
+.all-quizzes p.title{
     font-weight: bold;
     font-size: 20px;
     line-height: 23px;
-    margin-bottom: 12px;
+    color: #000000;
+    margin-bottom: 14px;
 }
 
 .quizz {
@@ -68,30 +117,61 @@
     margin-bottom: 14px;
     padding: 10px 20px;
     color: #FFFFFF;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(../imgs/conflict.jpg);
+    background-size: cover;
 }
-.quizz:hover{
+
+.quizz:hover {
     cursor: pointer;
 }
 
 @media (min-width: 750px) {
-    .no-quiz-created {
-        margin: 77px 0 112px;
-        max-width: 1051px;
+    .user-quizzes{
+        width: 100%;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .user-quizzes span:nth-child(1){
+       width: 100%;
+       max-width: 1065px;
+    }
+    .user-quizzes .title{
+        margin-top: 65px;
+        justify-content: start;
+    }
+    .user-quizzes .title ion-icon{
+        margin-left: 17px;
+    }
+    .title p{
+        margin-bottom: 12px;
+    }
+    
+    .user-quizzes-list {
+        max-width: 1065px;
+        display: flex;
+        flex-wrap: wrap;
     }
 
-    .all-quizzes {
-        max-width: 1065px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin: 0px 10px;
+    .my-quizzes span {
+        margin-top: 65px;
+        height: auto;
+        display: flex;
     }
-    .all-quizzes span p{
-        position: absolute;
-        top: 402px;
-        
+
+    .no-quiz-created {
+        max-width: 1050px;
+        margin: 77px 0 112px;
+    }
+
+    .all-quizzes-list {
+        display: flex;
+        max-width: 1065px;
+        flex-wrap: wrap;
     }
     .quizz {
         margin-right: 15px;
     }
-    
+
 }
