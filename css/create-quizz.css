@@ -127,8 +127,6 @@
     margin-top: 32px;
 }
 
-
-
 .create-quizz-levels {
     display: flex;
     align-items: center;
@@ -195,6 +193,12 @@
     margin-top: 9px;
     background-color: #FAFAFA;
     color: #818181;
+}
+
+
+
+.selected {
+
 }
 
 @media (min-width: 700px) {
