@@ -12,15 +12,11 @@ let form = {
 };
 
 
-
-
-// Chama a tela de criação do quizz
 function createQuizz() {
-    const main = document.querySelector("main");
+    const creationPage = document.querySelector(".quizz-creation-page");
     const navHome = document.querySelector("main nav");
     navHome.classList.add("hidden");
-    main.innerHTML += `
-                        <section class="quizz-creation-page">
+    creationPage.innerHTML += `
                             <div class="create-quizz-informations">
                                 <h1>Comece pelo começo</h1>
                                 <form>
@@ -31,33 +27,31 @@ function createQuizz() {
                                 </form>
                                 <button onclick="checkInformation();">Prosseguir para criar perguntas</button>
                             </div>
-                        </section>
     `;
 }
-// Verifica as informações do formulario inicial
+
 function checkInformation() {
     form.title = document.querySelector(".create-quizz-informations input:first-child").value;
     form.image = "https://th.bing.com/th/id/R.134275efe2edde9c1b2f54a3b41d7e9b?rik=yPQwMnuA0FjmbA&riu=http%3a%2f%2fferramentasinteligentes.com.br%2fwp-content%2fuploads%2f2015%2f06%2fwater-209901_1280.jpg&ehk=xnl0YRcaEQ96ra5oHwKkHhaJ9GeUczedE05Ahfq8UN0%3d&risl=&pid=ImgRaw&r=0"                                                                       //document.querySelector(".create-quizz-informations input:nth-child(2)").value;
     amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
     amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
 
-    // if(!(form.title.length >= 20 && form.title.length <= 65)){
+    // if (!(form.title.length >= 20 && form.title.length <= 65)) {
     //     alert("O titulo tem que ter entre 20 e 65 caracteres");
     // }
-    // if(!(regularExpression.test(form.image))){
+    // if (!(regularExpression.test(form.image))) {
     //     alert("Esta não é uma url valida");
     // }
-    // if(amountOf.questions < 3){
+    // if (amountOf.questions < 3) {
     //     alert("A quantidade de perguntas tem de ser ao menos 3");
     // }
-    // if(amountOf.levels < 2){
+    // if (amountOf.levels < 2) {
     //     alert("A quantidade de niveis tem de ser ao menos 2");
     // }
-    // if((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)){
-        
+    // if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
+    //     createQuizzQuestions();
     // }
     createQuizzQuestions();
-
 }
 
 // Chama a tela de criação das perguntas do quizz
@@ -74,40 +68,33 @@ function createQuizzQuestions() {
 `;
     showQuestions();
 }
-// Mostra a tela de criação
+
 function showQuestions() {
     const formPosition = document.querySelector(".create-quizz-questions div");
     const form = document.querySelector("questions-form");
     for (let i = 0; i < amountOf.questions; i++) {
         formPosition.innerHTML += `
         <form class="questions-form question-${i + 1}"> 
-            <p>Pergunta ${i + 1}</p>
+            <p class="question-tittle">Pergunta ${i + 1}</p>
             <p>Resposta correta</p>
             <p>Respostas incorretas</p>
             <div>
                 <input id="question-title" placeholder="Texto da pergunta"></input>
                 <input id="question-color" placeholder="Cor de fundo da pergunta"></input>
             </div>
-           
-            <div>
-                <input id="question-answer-1" placeholder="Resposta Correta"></input>
-                <input id="question-url-1" placeholder="URL da imagem"></input>
-            </div>
-            
-            <div>
-                <input id="question-answer-2" placeholder="Resposta incorreta 1"></input>
-                <input id="question-url-2" placeholder="URL da imagem 1"></input>
-            </div>
-            <div>
-                <input id="question-answer-3" placeholder="Resposta incorreta 2"></input>
-                <input id="question-url-3" placeholder="URL da imagem 2"></input>
-            </div>
-            <div>
-                <input id="question-answer-4" placeholder="Resposta incorreta 3"></input>
-                <input id="question-url-4" placeholder="URL da imagem 3"></input>
-            </div>
         </form>`
+
+        for (let j = 0; j < 4; j++) {
+            let answerPosition = document.querySelector(`.question-${i + 1}`);
+            answerPosition.innerHTML += `
+            <div>
+                <input id="question-answer-${j + 1}" placeholder="Resposta Correta"></input>
+                <input id="question-url-${j + 1}" placeholder="URL da imagem"></input>
+            </div>
+        `
+        }
     }
+
 }
 
 function createQuizzLevels() {
@@ -149,27 +136,26 @@ function finalizeQuizzCreation() {
     <h1>Seu quizz está pronto!</h1>
     <img src="${form.image}"></img>
     <button>Acessar Quizz</button>
-    <button>Voltar pra home</button>
+    <button onclick="backToHomePage()">Voltar pra home</button>
     </div>
     `
 }
 
 
 function pickUpQuestions() {
-
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < amountOf.questions; i++) {
         let questionObject = {
-            title: null,
-            color: null,
+            title: '',
+            color: '',
             answers: []
         };
         questionObject.title = document.querySelector(`.question-${i + 1} #question-title`).value;
         questionObject.color = document.querySelector(`.question-${i + 1} #question-color`).value;
         for (let j = 1; j <= 4; j++) {
             let answerObject = {
-                text: null,
-                image: null,
-                isCorrectAnswer: null
+                text: '',
+                image: '',
+                isCorrectAnswer: ''
             };
             answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j}`).value;
             answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j}`).value;
@@ -179,44 +165,47 @@ function pickUpQuestions() {
             else {
                 answerObject.isCorrectAnswer = false;
             }
-            if(answerObject.text){
-            questionObject.answers.push(answerObject);
+            if (answerObject.text) {
+                questionObject.answers.push(answerObject);
             }
         }
         form.questions.push(questionObject);
     }
 
-    // for(let k = 0; k < amountOf.questions; k++){
-    //     if(form.questions[k].title.length < 20){
+
+
+
+    // for (let k = 0; k < amountOf.questions; k++) {
+    //     if (form.questions[k].title.length < 20) {
     //         alert("O titulo da questão deve ter pelo menos 20 caracteres");
+    //         form.questions = [];
     //     }
-        // if(!colorRegularExpression.test(form.questions[k].color)){
-        //     alert("A cor da pergunta deve ser passada em formato hexadecimal");
-        // }
-        // if(!form.questions[k].title){
-        //     alert("O texto da questão não pode estar vazio");
-        // }
-        // for(let f = 0; f < 4; f++){
-        //     if(!(regularExpression.test(form.questions[k].levels[f].image))){
-        //         alert("A imagem da resposta deve ter uma url valida");
-        //     }
-        //     if(!form.questions[k].levels[f].isCorrectAnswer.includes(true)){
-        //         alert("A questão deve conter ao menos uma respota correta");
-        //     }
-        //     if(form.questions[k].levels[f].length < 2){
-        //         alert("A questão deve conter ao menos duas respostas");
-        //     }
-        //     if((form.questions[k].title.length > 20) && (colorRegularExpression.test(form.questions[k].color)) && (form.questions[k].title) && (regularExpression.test(form.questions[k].levels[f].image)) && (form.questions[k].levels[f].isCorrectAnswer.includes(true)) && (form.questions[k].levels[f].length >= 2)){
-        //         createQuizzLevels();
-        //     }
-        // }
-        // form.questions = [];
+    //     if (!colorRegularExpression.test(form.questions[k].color)) {
+    //         alert("A cor da pergunta deve ser passada em formato hexadecimal");
+    //         form.questions = [];
     // }
 
+    // for (let f = 0; f < 4; f++) {
+    //     if (form.questions[k].answers.text == undefined) {
+    //         alert("O texto da questão não pode estar vazio");
+    //     }
 
+    //     if (!(regularExpression.test(form.questions[k].levels[f].image)) || form.questions[k].levels[f].image == undefined) {
+    //         alert("A imagem da resposta deve ter uma url valida");
+    //     }
+    //     if (!form.questions[k].levels[f].isCorrectAnswer.includes(true)) {
+    //         alert("A questão deve conter ao menos uma respota correta");
+    //     }
+    //     if (form.questions[k].levels[f].length < 2) {
+    //         alert("A questão deve conter ao menos duas respostas");
+    //     }
+    //     if ((form.questions[k].title.length > 20) && (colorRegularExpression.test(form.questions[k].color)) && (form.questions[k].title) && (regularExpression.test(form.questions[k].levels[f].image)) && (form.questions[k].levels[f].isCorrectAnswer.includes(true)) && (form.questions[k].levels[f].length >= 2)) {
+    //         createQuizzLevels();
+    //     }
 
-
-   
+    // }
+    // }
+    createQuizzLevels()
 }
 
 function pickUpLevels() {
@@ -236,7 +225,6 @@ function pickUpLevels() {
 
         form.levels.push(levelObject);
     }
-
 
     // for (let j = 0; j < amountOf.levels; j++) {
     //     if (form.levels[j].title.length < 10) {
@@ -259,6 +247,10 @@ function pickUpLevels() {
     //     }
     //     form.levels = [];
     // }
+    finalizeQuizzCreation();
+}
+
+function editQuestions() {
 
 }
 

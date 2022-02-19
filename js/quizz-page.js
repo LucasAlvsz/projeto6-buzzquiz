@@ -134,4 +134,5 @@ function backToHomePage() {
     document.querySelector(".quizz-page").classList.add("hidden")
     document.querySelector("nav").classList.remove("hidden")
     document.querySelector("nav").scrollIntoView()
+    const creationPage = document.querySelector(".quizz-creation-page").innerHTML = '';
 }
