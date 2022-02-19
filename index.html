@@ -6,14 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuzzQuiz</title>
-
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home-page.css">
     <link rel="stylesheet" href="css/create-quizz.css">
     <link rel="stylesheet" href="css/quizz-page.css">
-
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -28,31 +25,33 @@
 
     <main>
         <nav>
-        <section class="user-quizzes">
-            <span></span>
-            <div class="no-quiz-created">
-                <span>
-                    <p>Você não criou nenhum quizz ainda :(</p>
-                    <button onclick="createQuizz()">Criar Quizz</button>
-                </span>
-            </div>
-            <ul class="user-quizzes-list">
-            </ul>
-        </section>
-        <section class="all-quizzes">
-            <p class="title">Todos os Quizzes</p>
-            <ul class="all-quizzes-list"></ul>
-        </section>
+            <section class="user-quizzes">
+                <span></span>
+                <div class="no-quiz-created">
+                    <span>
+                        <p>Você não criou nenhum quizz ainda :(</p>
+                        <button onclick="createQuizz()">Criar Quizz</button>
+                    </span>
+                </div>
+                <ul class="user-quizzes-list">
+                </ul>
+            </section>
+            <section class="all-quizzes">
+                <p class="title">Todos os Quizzes</p>
+                <ul class="all-quizzes-list">
+                    <!-- <li><p class="quizz"></p></li> -->
+                </ul>
+            </section>
 
         </nav>
         <!-- Tela 2 - Página de um quizz -->
         <section class="quizz-page hidden">
             <p class="title-quizz">O quão Potterhead é você?</p>
             <div class="all-questions">
-               
+
             </div>
         </section>
-        <!-- Tela 2 - Página de um quizz -->
+        <!-- Fim Tela 2 - Página de um quizz -->
         <section class="quizz-creation-page"></section>
     </main>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
@@ -61,7 +60,7 @@
     <script src="js/creation-quizz.js"></script>
     <script src="js/quizz-page.js"></script>i
     <script src="js/user-quizzes.js"></script>
-    
+
 </body>
 
 </html>
