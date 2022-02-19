@@ -67,15 +67,18 @@ const myQuizz = {
 	]
 }
 
-//axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", myQuizz).then(deubom)
-
-function deubom(quizzesArray) {
-	console.log("dale");
-	saveUserQuizz(quizzesArray.data.id, myQuizz)
+function sendAndSaveUserQuizz(quizzUser) {
+	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzUser)
+		.then(response => {
+			userQuizz = JSON.stringify(quizzUser)
+			localStorage.setItem(response.data.id.toString(), quizzUser)
+	})
 }
 
-function saveUserQuizz(id, myQuizz) {
-	userQuizz = JSON.stringify(myQuizz)
-	localStorage.setItem(id.toString(), userQuizz)
-}
+
+
+// function saveUserQuizz(id, myQuizz) {
+// 	userQuizz = JSON.stringify(myQuizz)
+// 	localStorage.setItem(id.toString(), userQuizz)
+// }
 //localStorage.setItem("nome", "Lucax");
