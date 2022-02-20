@@ -132,7 +132,7 @@
     cursor: pointer;
 }
 
-ul.user-quizzes-list .quizz span{
+ul.user-quizzes-list .quizz span {
     top: 9px;
     right: 0;
     position: absolute;
@@ -154,6 +154,7 @@ ul.user-quizzes-list .quizz span{
 .quizz span svg {
     margin-top: 16px;
 }
+
 
 @media (min-width: 1100px) {
     .user-quizzes {

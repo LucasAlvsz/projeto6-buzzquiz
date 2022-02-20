@@ -14,6 +14,8 @@ let form = {
 function createQuizz() {
     const creationPage = document.querySelector(".quizz-creation-page");
     const navHome = document.querySelector("main nav");
+    const quizzPage = document.querySelector(".quizz-page")
+    quizzPage.style.display = "none"
     navHome.classList.add("hidden");
     creationPage.innerHTML += `
                             <div class="create-quizz-informations">
