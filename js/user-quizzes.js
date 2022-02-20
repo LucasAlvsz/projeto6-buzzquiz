@@ -92,6 +92,10 @@ function deleteUserQuizz(quizzUserId) {
 		.catch(() => console.log("erro"))
 }
 
+function editUserQuizz() {
+
+}
+
 
 // function saveUserQuizz(id, myQuizz) {
 // 	userQuizz = JSON.stringify(myQuizz)

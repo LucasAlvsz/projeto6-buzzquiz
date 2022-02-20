@@ -137,7 +137,7 @@ function showLevels() {
 }
 
 function finalizeQuizzCreation() {
-    sendAndSaveUserQuizz(form)
+    sendAndSaveUserQuizz(form);
     const createQuizzInformation = document.querySelector(".create-quizz-levels");
     const creationPage = document.querySelector(".quizz-creation-page");
     createQuizzInformation.style.display = "none";
@@ -187,45 +187,45 @@ function pickUpQuestions() {
         form.questions.push(questionObject);
     }
 
-    form.questions.forEach((question) => {
-        let counter = 0;
-        if (question.title.length < 20) {
-            alert("O titulo da questão deve ter pelo menos 20 caracteres");
-            form.questions = [];
-        }
-        if (!colorRegularExpression.test(question.color)) {
-            alert("A cor da pergunta deve ser passada em formato hexadecimal");
-            form.questions = [];
-        }
-        if (question.answers.length < 2) {
-            alert("A questão deve conter ao menos duas respostas");
-            form.questions = [];
-        }
+    // form.questions.forEach((question) => {
+    //     let counter = 0;
+    //     if (question.title.length < 20) {
+    //         alert("O titulo da questão deve ter pelo menos 20 caracteres");
+    //         form.questions = [];
+    //     }
+    //     if (!colorRegularExpression.test(question.color)) {
+    //         alert("A cor da pergunta deve ser passada em formato hexadecimal");
+    //         form.questions = [];
+    //     }
+    //     if (question.answers.length < 2) {
+    //         alert("A questão deve conter ao menos duas respostas");
+    //         form.questions = [];
+    //     }
 
-        question.answers.forEach((answer) => {
-            if (answer.text == "") {
-                alert("O texto da questão não pode estar vazio");
-                console.log(answer);
-                form.questions = [];
-            }
+    //     question.answers.forEach((answer) => {
+    //         if (answer.text == "") {
+    //             alert("O texto da questão não pode estar vazio");
+    //             console.log(answer);
+    //             form.questions = [];
+    //         }
 
-            if (!(regularExpression.test(answer.image)) || answer.image == undefined) {
-                alert("A imagem da resposta deve ter uma url valida");
-                form.questions = [];
-            }
+    //         if (!(regularExpression.test(answer.image)) || answer.image == undefined) {
+    //             alert("A imagem da resposta deve ter uma url valida");
+    //             form.questions = [];
+    //         }
 
-            if (answer.isCorrectAnswer === true) {
-                counter++;
-            }
-        });
-        if (counter === 0) {
-            alert("A questão deve conter ao menos uma respota correta");
-            form.questions = [];
-        }
-    });
-    if(form.questions.length !== 0){
+    //         if (answer.isCorrectAnswer === true) {
+    //             counter++;
+    //         }
+    //     });
+    //     if (counter === 0) {
+    //         alert("A questão deve conter ao menos uma respota correta");
+    //         form.questions = [];
+    //     }
+    // });
+    // if(form.questions.length !== 0){
         createQuizzLevels();
-    }
+    // }
 }
 
 function pickUpLevels() {
@@ -245,27 +245,27 @@ function pickUpLevels() {
         form.levels.push(levelObject);
     }
 
-    for (let j = 0; j < amountOf.levels; j++) {
-        if (form.levels[j].title.length < 10) {
-            alert("O titulo do nível deve conter pelo menos 10 caracteres");
-        }
-        if ((form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')) {
-            alert("A porcentagem de acerto minima deve ser um número entre 0 e 100");
-        }
-        if (!(regularExpression.test(form.levels[j].image))) {
-            alert("Esta não é uma url valida");
-        }
-        if (form.levels[j].text.length < 30) {
-            alert("A descrição do nível deve ter pelo menos 30 caracteres");
-        }
-        if (!form.levels[j].minValue.includes(0)) {
-            alert("Pelo menos um dos níveis deve conter uma % de acerto igual a 0")
-        }
-        if ((form.levels[j].title.length >= 10) && (!(form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')) && (regularExpression.test(form.levels[j].image) && (form.levels[j].text.length >= 30) && (form.levels[j].minValue.includes(0)))) {
-            finalizeQuizzCreation();
-        }
-        form.levels = [];
-    }
+    // for (let j = 0; j < amountOf.levels; j++) {
+    //     if (form.levels[j].title.length < 10) {
+    //         alert("O titulo do nível deve conter pelo menos 10 caracteres");
+    //     }
+    //     if ((form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')) {
+    //         alert("A porcentagem de acerto minima deve ser um número entre 0 e 100");
+    //     }
+    //     if (!(regularExpression.test(form.levels[j].image))) {
+    //         alert("Esta não é uma url valida");
+    //     }
+    //     if (form.levels[j].text.length < 30) {
+    //         alert("A descrição do nível deve ter pelo menos 30 caracteres");
+    //     }
+    //     if (!form.levels[j].minValue.includes(0)) {
+    //         alert("Pelo menos um dos níveis deve conter uma % de acerto igual a 0")
+    //     }
+    //     if ((form.levels[j].title.length >= 10) && (!(form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')) && (regularExpression.test(form.levels[j].image) && (form.levels[j].text.length >= 30) && (form.levels[j].minValue.includes(0)))) {
+    //         finalizeQuizzCreation();
+    //     }
+    //     form.levels = [];
+    // }
     finalizeQuizzCreation();
 }
 

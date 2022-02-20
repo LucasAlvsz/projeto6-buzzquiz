@@ -20,6 +20,9 @@
     font-size: 31px;
     color: #EC362D;
 }
+.title ion-icon:hover {
+    cursor: pointer;
+}
 
 .my-quizzes {
     width: 100%;
