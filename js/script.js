@@ -1,4 +1,5 @@
 let quizzes = []
+let userQuizzesIds = []
 // const URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/"
 let existsUserQuizzes = false
 
@@ -12,12 +13,13 @@ function aleatorio(teste) {
 }
 function erro(erro) {
     console.log(erro);
-    
+
 }
 function pickUpUserQuizzes() {
     const userQuizzesList = document.querySelector(".user-quizzes-list")
     for (let i = 0; i < quizzes.length; i++) {
         if (localStorage.getItem(quizzes[i].id.toString())) {
+            userQuizzesIds.push(quizzes[i].id)
             existsUserQuizzes = true
             let userQuizz = JSON.parse(localStorage.getItem(quizzes[i].id))
             userQuizzesList.innerHTML +=
@@ -54,9 +56,12 @@ function pickUpUserQuizzes() {
 function showAllQuizzes(quizzes) {
     const allQuizzesList = document.querySelector(".all-quizzes-list");
     for (let i = 0; i < quizzes.length; i++) {
-        allQuizzesList.innerHTML +=
-            `<li onclick="showPageQuizz(quizzes[${i}])"><p class="quizz qzz${i}">${quizzes[i].title}</p>`
-        document.querySelector(`.qzz${i}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizzes[i].image})`
+        if (!userQuizzesIds.includes(quizzes[i].id)) {
+            allQuizzesList.innerHTML +=
+                `<li onclick="showPageQuizz(quizzes[${i}])"><p class="quizz qzz${i}">${quizzes[i].title}</p>`
+            document.querySelector(`.qzz${i}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${quizzes[i].image})`
+        }
+
     }
 }
 
