@@ -1,17 +1,21 @@
-.question {
-    background-color: #fff;
+.quizz-page{
     width: 100%;
-    min-height: 436px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 24px;
+}
+.question {
+    background-color: #fff;
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
     padding-top: 18px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
 .title-quizz {
-    background-color: red;
     width: 100%;
     height: 142px;
     display: flex;
@@ -24,6 +28,7 @@
     font-size: 19px;
     line-height: 22px;
     color: #fff;
+    margin-bottom: 24px;
 }
 
 .title-questions {
@@ -39,6 +44,7 @@
     text-align: center;
     color: #FFF;
     padding: 16px;
+    margin-bottom: 13px;
 }
 
 .all-alternatives {
@@ -51,7 +57,6 @@
 .alternative img {
     width: 163px;
     height: 113px;
-    margin-top: 13px;
 }
 .alternative img:hover {
     cursor: pointer;
@@ -60,11 +65,12 @@
 .alternative p {
     max-width: 163px;
     min-height: 22px;
+    display: flex;
     font-weight: bold;
     font-size: 13px;
     line-height: 15px;
-    margin-left: 3px;
     color: #000000;
+    margin: 5px 0px 12px;
 }
 
 .result {
@@ -75,16 +81,14 @@
 
 .result .question {
     height: auto;
-    margin-bottom: 34px;
+    /* margin-bottom: 34px; */
 }
-
 
 .result img {
     width: 340px;
     height: 255px;
     display: flex;
     justify-content: center;
-    margin: 9px;
 }
 
 .result b {
@@ -95,9 +99,8 @@
     font-size: 17px;
     line-height: 20px;
     color: #484848;
-    margin-top: 5px;
+    margin-top: 9px;
     margin-bottom: 14px;
-    margin-left: 10px;
 }
 
 .result button {
@@ -131,6 +134,9 @@
     .quizz-page{
         width: 100%;
     }
+    .title-quizz{
+        margin-bottom: 42px;
+    }
     .all-questions {
         width: 100%;
         display: flex;
@@ -140,7 +146,7 @@
 
     .question {
         width: 759px;
-        height: 676px;
+        margin-bottom: 48px;
     }
 
     .title-questions {
@@ -148,6 +154,7 @@
         font-size: 23px;
         line-height: 27px;
         padding: 32px;
+        margin-bottom: 20px;
     }
 
     .all-alternatives {
@@ -157,35 +164,37 @@
     .alternative img {
         width: 330px;
         height: 175px;
-        margin-top: 20px;
     }
 
     .alternative p {
         max-width: 330px;
         font-size: 20px;
         line-height: 23px;
-        margin-left: 3px;
+        margin: 8px 0px 18px;
     }
 
     .result .title-questions {
         width: 727px;
+        margin-bottom: 0;
     }
 
     .result span {
         width: 727px;
         display: flex;
         justify-content: space-between;
+        padding: 0;
+        margin-top: 18px;
     }
 
     .result img {
         width: 364px;
-        margin: 18px 0;
+        margin: 0 0 23px;
     }
 
     .result b {
         font-size: 19px;
         line-height: 25px;
-        margin-top: 18px;
+        margin: 0;
     }
 
     .result button {

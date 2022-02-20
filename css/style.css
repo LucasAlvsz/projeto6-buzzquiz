@@ -10,7 +10,6 @@ body {
 
 .hidden {
     display: none;
-    /* visibility: collapse; */
 }
 
 header {
@@ -34,9 +33,8 @@ header p {
 }
 
 main {
-    /* background-color: burlywood; */
     width: 100%;
-    height: calc(100% - 69px);
+    height: calc(100vh - 69px);
     margin-top: 69px;
     display: flex;
     flex-direction: column;
