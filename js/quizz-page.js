@@ -130,15 +130,16 @@ function restartQuizz(value) {
 }
 
 function backToHomePage() {
-    restartQuizz(false)
-    document.querySelector(".quizz-page").classList.add("hidden")
-    document.querySelector("nav").classList.remove("hidden")
-    document.querySelector("nav").scrollIntoView()
-    const creationPage = document.querySelector(".quizz-creation-page").innerHTML = '';
-    form = {
-        title: null,
-        image: null,
-        questions: [],
-        levels: []
-    };
+    window.location.reload()
+    // restartQuizz(false)
+    // document.querySelector(".quizz-page").classList.add("hidden")
+    // document.querySelector("nav").classList.remove("hidden")
+    // document.querySelector("nav").scrollIntoView()
+    // const creationPage = document.querySelector(".quizz-creation-page").innerHTML = '';
+    // form = {
+    //     title: null,
+    //     image: null,
+    //     questions: [],
+    //     levels: []
+    // };
 }

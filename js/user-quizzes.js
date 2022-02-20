@@ -1,4 +1,4 @@
-const myQuizz = {
+let myQuizz = {
 	title: "Título do quizz",
 	image: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Akali_0.jpg",
 	questions: [
@@ -67,14 +67,31 @@ const myQuizz = {
 	]
 }
 
-function sendAndSaveUserQuizz(quizzUser) {
-	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzUser)
+// myQuizz = JSON.parse(localStorage.getItem("6102"))
+// axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", myQuizz).then(response => {
+// 	console.log("dale");
+// 	userQuizz = JSON.stringify(myQuizz)
+// 	localStorage.setItem(response.data.id.toString(), userQuizz)
+// })
+// console.log(myQuizz);
+
+function sendAndSaveUserQuizz(quizzUserId) {
+	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzUserId)
 		.then(response => {
-			userQuizz = JSON.stringify(quizzUser)
-			localStorage.setItem(response.data.id.toString(), quizzUser)
-	})
+			userQuizz = JSON.stringify(quizzUserId)
+			localStorage.setItem(response.data.id.toString(), userQuizz)
+		})
 }
 
+function deleteUserQuizz(quizzUserId) {
+	axios.delete(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quizzUserId.toString()}`, "Secret-Key")
+		.then(() => {
+			console.log("entreiiiii");
+			localStorage.removeItem(quizzUserId.toString());
+			window.location.reload()
+		})
+		.catch(() => console.log("erro"))
+}	
 
 
 // function saveUserQuizz(id, myQuizz) {

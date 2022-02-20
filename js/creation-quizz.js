@@ -62,7 +62,7 @@ function createQuizzQuestions() {
     <div class="create-quizz-questions">
         <h1>Crie suas perguntas</h1>
         <div></div>
-        <button onclick="pickUpQuestions();">Prosseguir para criar níveis</button>
+        <button onclick="pickUpQuestions()">Prosseguir para criar níveis</button>
     </div>
 `;
     showQuestions();
@@ -104,7 +104,7 @@ function createQuizzLevels() {
     <div class="create-quizz-levels">
         <h1>Agora, decida os níveis!</h1>
         <div></div>
-        <button onclick="pickUpLevels(), sendUserQuizz(${form})">Finalizar Quizz</button>
+        <button onclick="pickUpLevels()">Finalizar Quizz</button>
     </div>
    `;
     showLevels();
@@ -127,6 +127,7 @@ function showLevels() {
 }
 
 function finalizeQuizzCreation() {
+    sendAndSaveUserQuizz(form)
     const createQuizzInformation = document.querySelector(".create-quizz-levels");
     const creationPage = document.querySelector(".quizz-creation-page");
     createQuizzInformation.style.display = "none";
@@ -234,7 +235,6 @@ function pickUpQuestions() {
 }
 
 function pickUpLevels() {
-
     for (let i = 1; i <= amountOf.levels; i++) {
         let levelObject = {
             title: null,
