@@ -74,10 +74,10 @@ let myQuizz = {
 // })
 // console.log(myQuizz);
 
-function sendAndSaveUserQuizz(quizzUserId) {
-	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzUserId)
+function sendAndSaveUserQuizz(quizzUser) {
+	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzUser)
 		.then(response => {
-			userQuizz = JSON.stringify(quizzUserId)
+			userQuizz = JSON.stringify(quizzUser)
 			localStorage.setItem(response.data.id.toString(), userQuizz)
 		})
 }
