@@ -66,7 +66,6 @@ let myQuizz = {
 		}
 	]
 }
-
 // myQuizz = JSON.parse(localStorage.getItem("6102"))
 // axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", myQuizz).then(response => {
 // 	console.log("dale");
@@ -91,7 +90,7 @@ function deleteUserQuizz(quizzUserId) {
 			window.location.reload()
 		})
 		.catch(() => console.log("erro"))
-}	
+}
 
 
 // function saveUserQuizz(id, myQuizz) {
