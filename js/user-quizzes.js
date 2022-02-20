@@ -92,6 +92,12 @@ function deleteUserQuizz(quizzUserId) {
 		.catch(() => console.log("erro"))
 }
 
+function editUserQuizz(quizzUser) {
+	const quizz = localStorage.getItem(quizzUser.toString());
+	console.log(quizzUser);
+	checkInformation(quizzUser);
+}
+
 
 // function saveUserQuizz(id, myQuizz) {
 // 	userQuizz = JSON.stringify(myQuizz)
