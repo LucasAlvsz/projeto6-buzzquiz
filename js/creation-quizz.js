@@ -234,7 +234,7 @@ function pickUpQuestions() {
 }
 
 function pickUpLevels() {
-    sendAndSaveUserQuizz(form);
+    // sendAndSaveUserQuizz(form);
     for (let i = 1; i <= amountOf.levels; i++) {
         let levelObject = {
             title: null,
