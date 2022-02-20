@@ -23,7 +23,7 @@ function pickUpUserQuizzes() {
             existsUserQuizzes = true
             let userQuizz = JSON.parse(localStorage.getItem(quizzes[i].id))
             userQuizzesList.innerHTML +=
-                `<li onclick="showPageQuizz(${quizzes[i].id})"><p class="quizz user-qzz${i}"><span> <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                `<li onclick="showPageQuizz(${quizzes[i].id})"><p class="quizz user-qzz${i}"><span> <svg onclick="editUserQuizz(${quizzes[i].id})" width="19" height="18" viewBox="0 0 19 18" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M3.88672 14.1253L8.17537 14.1107L17.536 4.83956C17.9033 4.47221 18.1055 3.98435 18.1055 3.4654C18.1055 2.94644 17.9033 2.45859 17.536 2.09124L15.9947 0.54993C15.26 -0.184768 13.9781 -0.18088 13.2493 0.547015L3.88672 9.82015V14.1253ZM14.6205 1.92409L16.1647 3.46248L14.6127 4.99991L13.0714 3.45957L14.6205 1.92409ZM5.83036 10.6306L11.6905 4.82595L13.2318 6.36726L7.37265 12.17L5.83036 12.1749V10.6306Z"

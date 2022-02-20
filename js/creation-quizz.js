@@ -31,11 +31,16 @@ function createQuizz() {
     `;
 }
 
-function checkInformation() {
-    form.title = document.querySelector(".create-quizz-informations input:first-child").value;
-    form.image = document.querySelector(".create-quizz-informations input:nth-child(2)").value;
-    amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
-    amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
+function checkInformation(isLocale) {
+    if (isLocale) {
+
+    }
+    else {
+        form.title = document.querySelector(".create-quizz-informations input:first-child").value;
+        form.image = document.querySelector(".create-quizz-informations input:nth-child(2)").value;
+        amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
+        amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
+    }
 
     if (!(form.title.length >= 20 && form.title.length <= 65)) {
         alert("O titulo tem que ter entre 20 e 65 caracteres");
@@ -52,7 +57,7 @@ function checkInformation() {
     if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
         createQuizzQuestions();
     }
-    
+
 }
 
 // Chama a tela de criação das perguntas do quizz
@@ -147,8 +152,8 @@ function finalizeQuizzCreation() {
     creationPage.innerHTML += `
     <div class="finalize-creation">
     <h1>Seu quizz está pronto!</h1>
-    <div class="finalize-quizz"></div>
-    <button>Acessar Quizz</button>
+    <div onclick="acessQuizz()" class="finalize-quizz"></div>
+    <button onclick="acessQuizz()">Acessar Quizz</button>
     <button onclick="backToHomePage()">Voltar pra home</button>
     </div>
     `;
@@ -226,7 +231,7 @@ function pickUpQuestions() {
     //     }
     // });
     // if(form.questions.length !== 0){
-        createQuizzLevels();
+    createQuizzLevels();
     // }
 }
 
@@ -292,5 +297,10 @@ function openEditQuestions(question, selected) {
         elementNode.querySelector("img").style.visibility = "visible";
     })
 
+}
+function acessQuizz() {
+    document.querySelector(".quizz-page").style.display = "flex";
+    document.querySelector(".quizz-creation-page").style.display = "none";
+    showPageQuizz(form);
 }
 
