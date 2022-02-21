@@ -78,8 +78,8 @@ myQuizz = JSON.parse(localStorage.getItem("6106"))
 function sendAndSaveUserQuizz(quizzUser) {
 	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzUser)
 		.then(response => {
-			userQuizz = JSON.stringify(quizzUser)
-			localStorage.setItem(response.data.id.toString(), userQuizz)
+			let userQuizzStringfied = JSON.stringify(quizzUser)
+			localStorage.setItem(response.data.id.toString(), userQuizzStringfied)
 			let secretKey = "k" + response.data.id.toString()
 			localStorage.setItem(secretKey, response.data.key.toString()) 
 		})

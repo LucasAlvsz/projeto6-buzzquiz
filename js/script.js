@@ -32,7 +32,7 @@ function pickUpUserQuizzes() {
                     d="M1.94365 18H15.5492C16.6211 18 17.4928 17.1283 17.4928 16.0564V7.6326L15.5492 9.57625V16.0564H5.01266C4.98739 16.0564 4.96115 16.0661 4.93589 16.0661C4.90382 16.0661 4.87175 16.0573 4.8387 16.0564H1.94365V2.45085H8.59771L10.5414 0.507202H1.94365C0.871725 0.507202 0 1.37893 0 2.45085V16.0564C0 17.1283 0.871725 18 1.94365 18Z"
                     fill="white" />
             </svg>
-            <ion-icon onclick="deleteUserQuizz(${quizzes[i].id})" name="trash-outline"></ion-icon>
+            <ion-icon onclick="deleteUserQuizz(${quizzes[i].id}), event.stopPropagation()" name="trash-outline"></ion-icon>
         </span>${userQuizz.title}</p>`
             document.querySelector(`.user-qzz${i}`).style.background = `linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(${userQuizz.image})`
         }
@@ -50,7 +50,6 @@ function pickUpUserQuizzes() {
             `
     }
     showAllQuizzes(quizzes)
-
 }
 // Mostra os quizzes na tela inicial
 function showAllQuizzes(quizzes) {
