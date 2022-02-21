@@ -31,16 +31,16 @@
                 <div class="no-quiz-created">
                     <span>
                         <p>Você não criou nenhum quizz ainda :(</p>
-                        <button onclick="createQuizz()">Criar Quizz</button>
+                        <button data-identifier="create-quizz" onclick="createQuizz()">Criar Quizz</button>
                     </span>
                 </div>
-                <ul class="user-quizzes-list">
+                <ul data-identifier="user-quizzes" class="user-quizzes-list">
 
                 </ul>
             </section>
             <section class="all-quizzes">
                 <p class="title">Todos os Quizzes</p>
-                <ul class="all-quizzes-list">
+                <ul data-identifier="general-quizzes" class="all-quizzes-list">
                     <!-- <li><div class="gradient"><img src="imgs/conflict.jpg" alt=""><p></p></div></li> -->
                 </ul>
             </section>

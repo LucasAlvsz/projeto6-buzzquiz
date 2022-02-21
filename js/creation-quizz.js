@@ -74,9 +74,9 @@ function showQuestions() {
     const form = document.querySelector("questions-form");
     for (let i = 0; i < amountOf.questions; i++) {
         formPosition.innerHTML += `
-        <form class="questions-form question-${i + 1} small-size"> 
+        <form data-identifier="question" class="questions-form question-${i + 1} small-size"> 
             <p class="question-tittle">Pergunta ${i + 1}</p>
-            <img onclick="openEditQuestions(this, 'question-${i + 1}')" src="imgs/edit.svg"></img>
+            <img data-identifier="expand" onclick="openEditQuestions(this, 'question-${i + 1}')" src="imgs/edit.svg"></img>
             <p>Resposta correta</p>
             <p>Respostas incorretas</p>
             <div>
@@ -207,8 +207,9 @@ function showLevels() {
     const formPosition = document.querySelector(".create-quizz-levels div");
     for (let i = 0; i < amountOf.levels; i++) {
         formPosition.innerHTML += `
-        <form class="levels-form level-${i + 1}"> 
+        <form data-identifier="level" class="levels-form level-${i + 1} small-size"> 
             <p>Nível ${i + 1}</p>
+            <img data-identifier="expand" onclick="openEditLevel(this, 'level-${i + 1}')" src="imgs/edit.svg"></img>
             <div>
                 <input placeholder="Título do nível"></input>
                 <input placeholder="% de acerto mínima"></input>
@@ -219,27 +220,14 @@ function showLevels() {
     }
 }
 
-function finalizeQuizzCreation() {
-    sendAndSaveUserQuizz(form);
-    const createQuizzInformation = document.querySelector(".create-quizz-levels");
-    const creationPage = document.querySelector(".quizz-creation-page");
-    createQuizzInformation.style.display = "none";
-
-    creationPage.innerHTML += `
-    <div class="finalize-creation">
-        <h1>Seu quizz está pronto!</h1>
-        <div onclick="acessQuizz()" class="finalize-quizz"></div>
-        <button onclick="acessQuizz()">Acessar Quizz</button>
-        <button onclick="backToHomePage()">Voltar pra home</button>
-    </div>
-    `;
-    const finalizeDisplay = document.querySelector(".finalize-quizz");
-    finalizeDisplay.style.backgroundImage = `linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(${form.image})`;
-    finalizeDisplay.innerHTML += `<p>${form.title}</p>`;
-
-}
-
 function pickUpLevels() {
+    let verfication = {
+        length: 0,
+        minValue: 0,
+        validUrl: 0,
+        minCaracter: 0,
+        include0: 0
+    };
     for (let i = 1; i <= amountOf.levels; i++) {
         let levelObject = {
             title: null,
@@ -256,28 +244,37 @@ function pickUpLevels() {
         form.levels.push(levelObject);
     }
 
-    // for (let j = 0; j < amountOf.levels; j++) {
-    //     if (form.levels[j].title.length < 10) {
-    //         alert("O titulo do nível deve conter pelo menos 10 caracteres");
-    //     }
-    //     if ((form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')) {
-    //         alert("A porcentagem de acerto minima deve ser um número entre 0 e 100");
-    //     }
-    //     if (!(regularExpression.test(form.levels[j].image))) {
-    //         alert("Esta não é uma url valida");
-    //     }
-    //     if (form.levels[j].text.length < 30) {
-    //         alert("A descrição do nível deve ter pelo menos 30 caracteres");
-    //     }
-    //     if (!form.levels[j].minValue.includes(0)) {
-    //         alert("Pelo menos um dos níveis deve conter uma % de acerto igual a 0")
-    //     }
-    //     if ((form.levels[j].title.length >= 10) && (!(form.levels[j].minValue < 0) || (form.levels[j].minValue > 100) || (form.levels[j].minValue === '')) && (regularExpression.test(form.levels[j].image) && (form.levels[j].text.length >= 30) && (form.levels[j].minValue.includes(0)))) {
-    //         finalizeQuizzCreation();
-    //     }
-    //     form.levels = [];
-    // }
-    finalizeQuizzCreation();
+    form.levels.forEach((level) => {
+        if (level.title.length < 10 && verfication.length === 0) {
+            verfication.length++;
+            form.levels = [];
+            alert("O titulo do nível deve conter pelo menos 10 caracteres");
+        }
+        if ((level.minValue < 0) || (level.minValue > 100) || (level.minValue === '') && verfication.minValue === 0) {
+            verfication.minValue++;
+            form.levels = [];
+            alert("A porcentagem de acerto minima deve ser um número entre 0 e 100");
+        }
+        if (!(regularExpression.test(level.image)) && verfication.validUrl === 0) {
+            verfication.validUrl++;
+            form.levels = [];
+            alert("Esta não é uma url valida");
+        }
+        if (level.text.length < 30 && verfication.minCaracter === 0) {
+            verfication.minCaracter++;
+            form.levels = [];
+            alert("A descrição do nível deve ter pelo menos 30 caracteres");
+        }
+        if (!level.minValue.includes(0) && verfication.include0 === 0) {
+            verfication.include0++;
+            form.levels = [];
+            alert("Pelo menos um dos níveis deve conter uma % de acerto igual a 0");
+        }
+    })
+    if (form.levels.length !== 0) {
+        finalizeQuizzCreation();
+    }
+
 }
 
 function openEditQuestions(question, selected) {
@@ -303,9 +300,52 @@ function openEditQuestions(question, selected) {
     })
 
 }
+function openEditLevel(level, selected) {
+    document.querySelector(".create-quizz-levels").scrollIntoView();
+    let levelArray = [];
+    const parent = level.parentNode;
+    parent.querySelector("p:first-of-type").style.top = "10px";
+    parent.classList.remove("small-size");
+    parent.querySelector("img").style.visibility = "hidden";
+
+    for (let i = 0; i < amountOf.levels; i++) {
+        levelArray.push(`level-${i + 1}`);
+    }
+
+    let index = levelArray.indexOf(selected);
+    levelArray.splice(index, 1);
+
+    levelArray.forEach((element) => {
+        const elementNode = document.querySelector(`.${element}`);
+        elementNode.querySelector("p:first-of-type").style.top = "4px";
+        elementNode.classList.add("small-size");
+        elementNode.querySelector("img").style.visibility = "visible";
+    })
+}
+
 function acessQuizz() {
     document.querySelector(".quizz-page").style.display = "flex";
     document.querySelector(".quizz-creation-page").style.display = "none";
     showPageQuizz(form);
+}
+
+function finalizeQuizzCreation() {
+    sendAndSaveUserQuizz(form);
+    const createQuizzInformation = document.querySelector(".create-quizz-levels");
+    const creationPage = document.querySelector(".quizz-creation-page");
+    createQuizzInformation.style.display = "none";
+
+    creationPage.innerHTML += `
+    <div class="finalize-creation">
+        <h1>Seu quizz está pronto!</h1>
+        <div onclick="acessQuizz()" class="finalize-quizz"></div>
+        <button onclick="acessQuizz()">Acessar Quizz</button>
+        <button onclick="backToHomePage()">Voltar pra home</button>
+    </div>
+    `;
+    const finalizeDisplay = document.querySelector(".finalize-quizz");
+    finalizeDisplay.style.backgroundImage = `linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(${form.image})`;
+    finalizeDisplay.innerHTML += `<p>${form.title}</p>`;
+
 }
 

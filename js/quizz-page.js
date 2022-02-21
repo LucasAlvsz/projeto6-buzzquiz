@@ -26,7 +26,7 @@ function showPageQuizz(quizz) {
         quizz.questions[i].answers.sort(() => Math.random() - 0.5)
         classQuizzPage.querySelector(".all-questions").innerHTML +=
             `
-            <div class="question q${i}">
+            <div data-identifier="question" class="question q${i}">
             <p class="title-questions" id="${i}">
                 ${quizz.questions[i].title}
             </p>
@@ -39,7 +39,7 @@ function showPageQuizz(quizz) {
             if (quizz.questions[i].answers[j].isCorrectAnswer) {
                 classQuizzPage.querySelector(`.c${i}`).innerHTML +=
                     `
-                <div class="alternative correct-answer" onclick="selectAlternative(this)">
+                <div data-identifier="answer" class="alternative correct-answer" onclick="selectAlternative(this)">
                     <img src="${quizz.questions[i].answers[j].image}">
                     <p>${quizz.questions[i].answers[j].text}</p>
                 </div>
@@ -47,7 +47,7 @@ function showPageQuizz(quizz) {
             } else {
                 classQuizzPage.querySelector(`.c${i}`).innerHTML +=
                     `
-            <div class="alternative wrong-answer" onclick="selectAlternative(this)">
+            <div data-identifier="answer" class="alternative wrong-answer" onclick="selectAlternative(this)">
                     <img src="${quizz.questions[i].answers[j].image}">
                     <p>${quizz.questions[i].answers[j].text}</p>
             </div>
@@ -91,7 +91,7 @@ function showEndQuizz() {
         }
         document.querySelector(".all-questions").innerHTML +=
             `
-    <div class="result">
+    <div data-identifier="quizz-result" class="result">
         <div class="question">
             <p class="title-questions">
                 ${percentCorrectAnswers}% de acerto: ${levels[indexLevel].title}

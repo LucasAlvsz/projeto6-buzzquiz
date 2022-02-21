@@ -179,6 +179,18 @@
     left: 17px;
     top: 10px;
 }
+.levels-form img {
+    position: absolute;
+    top: 27px;
+    right: 14px;
+    font-size: 26px;
+}
+.levels-form img:hover {
+    cursor: pointer;
+}
+.levels-form input:first-of-type {
+    margin-top: 8px;
+}
 
 .levels-form div {
     margin-top: 45px;
