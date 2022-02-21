@@ -1,6 +1,6 @@
 let myQuizz = {
 	title: "Título do quizz",
-	image: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Akali_0.jpg",
+	image: "https://http.cat/411.jpg",
 	questions: [
 		{
 			title: "Título da pergunta 1",
@@ -86,8 +86,7 @@ function sendAndSaveUserQuizz(quizzUser) {
 }
 
 function deleteUserQuizz(quizzUserId) {
-	let confirmation = prompt("Digite 'sim' pra confirmar a excluisão do seu Quizz")
-	if (confirmation.toLowerCase() == "sim") {
+	if (window.confirm("Você realmente deseja excluir seu Quizz?")) {
 	axios.delete(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quizzUserId.toString()}`,
 		{ headers: { "Secret-Key": localStorage.getItem("k" + quizzUserId.toString()) } })
 		.then(() => {
