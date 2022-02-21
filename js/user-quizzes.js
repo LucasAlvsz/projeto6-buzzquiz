@@ -86,6 +86,8 @@ function sendAndSaveUserQuizz(quizzUser) {
 }
 
 function deleteUserQuizz(quizzUserId) {
+	let confirmation = prompt("Digite 'sim' pra confirmar a excluisão do seu Quizz")
+	if (confirmation.toLowerCase() == "sim") {
 	axios.delete(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quizzUserId.toString()}`,
 		{ headers: { "Secret-Key": localStorage.getItem("k" + quizzUserId.toString()) } })
 		.then(() => {
@@ -94,6 +96,7 @@ function deleteUserQuizz(quizzUserId) {
 			localStorage.removeItem("k" + quizzUserId.toString())
 		})
 		.catch(response => console.log(response))
+	}
 }
 
 function editUserQuizz(quizzUser) {
