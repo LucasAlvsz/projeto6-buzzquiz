@@ -48,3 +48,25 @@ nav {
     flex-direction: column;
     align-items: center; */
 } 
+
+/* Funciona no Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: transparent rgb(255, 255, 255, 0);
+}
+
+/* Funciona no Chrome, Edge, Safari OperaGx */
+*::-webkit-scrollbar {
+    width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgb(255, 0, 0);
+    display: none;
+
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    border: 3px solid #EC362D;
+}
