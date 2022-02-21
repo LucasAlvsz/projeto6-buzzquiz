@@ -1,5 +1,5 @@
 /* ----- MAGIC NUMBERS -----*/
-const TIMEAFTERSELECTINGALTERNATIVE = 1000
+const TIMEAFTERSELECTINGALTERNATIVE = 2000
 /* -------------------------*/
 let count = 0
 let numberQuestions = 0
@@ -12,7 +12,6 @@ function showPageQuizz(quizz) {
     if (typeof(quizz) == "number"){
         quizz = JSON.parse(localStorage.getItem(quizz))
     }
-    // console.log(quizz);
     quizzLog = quizz
     numberQuestions = quizz.questions.length
     levels = quizz.levels

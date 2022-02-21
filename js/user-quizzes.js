@@ -66,30 +66,34 @@ let myQuizz = {
 		}
 	]
 }
-// myQuizz = JSON.parse(localStorage.getItem("6102"))
+myQuizz = JSON.parse(localStorage.getItem("6106"))
+
 // axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", myQuizz).then(response => {
-// 	console.log("dale");
 // 	userQuizz = JSON.stringify(myQuizz)
 // 	localStorage.setItem(response.data.id.toString(), userQuizz)
+// 	let secretKey = "k" + response.data.id.toString()
+// 	localStorage.setItem(secretKey, response.data.key.toString()) 
 // })
-// console.log(myQuizz);
-
+// let secretKey
 function sendAndSaveUserQuizz(quizzUser) {
 	axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", quizzUser)
 		.then(response => {
 			userQuizz = JSON.stringify(quizzUser)
 			localStorage.setItem(response.data.id.toString(), userQuizz)
+			let secretKey = "k" + response.data.id.toString()
+			localStorage.setItem(secretKey, response.data.key.toString()) 
 		})
 }
 
 function deleteUserQuizz(quizzUserId) {
-	axios.delete(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quizzUserId.toString()}`, "Secret-Key")
+	axios.delete(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quizzUserId.toString()}`,
+		{ headers: { "Secret-Key": localStorage.getItem("k" + quizzUserId.toString()) } })
 		.then(() => {
-			console.log("entreiiiii");
-			localStorage.removeItem(quizzUserId.toString());
 			window.location.reload()
+			localStorage.removeItem(quizzUserId.toString());
+			localStorage.removeItem("k" + quizzUserId.toString())
 		})
-		.catch(() => console.log("erro"))
+		.catch(response => console.log(response))
 }
 
 function editUserQuizz(quizzUser) {

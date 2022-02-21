@@ -11,6 +11,7 @@ let form = {
     levels: []
 };
 counter2 = 0;
+isLocaleActive = false;
 
 function createQuizz() {
     const creationPage = document.querySelector(".quizz-creation-page");
@@ -36,15 +37,16 @@ function checkInformation(isLocale) {
 
     if (isLocale) {
         form = isLocale;
+        isLocaleActive = true;
         console.log(form);
         createQuizz();
         document.querySelector(".create-quizz-informations input:first-child").value = form.title;
         document.querySelector(".create-quizz-informations input:nth-child(2)").value = form.image;
-        document.querySelector(".create-quizz-informations input:nth-child(3)").value = form.questions.length; 
-        document.querySelector(".create-quizz-informations input:nth-child(4)").value = form.levels.length; 
+        document.querySelector(".create-quizz-informations input:nth-child(3)").value = form.questions.length;
+        document.querySelector(".create-quizz-informations input:nth-child(4)").value = form.levels.length;
         amountOf.questions = form.questions.length;
         amountOf.levels = form.levels.length;
-        counter ++;
+        counter2++;
     }
     else {
         form.title = document.querySelector(".create-quizz-informations input:first-child").value;
@@ -65,15 +67,15 @@ function checkInformation(isLocale) {
     if (amountOf.levels < 2) {
         alert("A quantidade de niveis tem de ser ao menos 2");
     }
-    if(!isLocale){
+    if (!isLocale) {
         if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
             createQuizzQuestions();
         }
-        else{
-            if(counter2 > 0){
+        else {
+            if (counter2 > 0) {
                 if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
                     counter2 = 0;
-                    createQuizzQuestions();
+                    createQuizzQuestions(isLocale);
                 }
             }
 
@@ -131,7 +133,20 @@ function showQuestions() {
             }
         }
     }
+    if (isLocaleActive) {
+       insertQuestionsToEdit();
+    }
+}
 
+function insertQuestionsToEdit() {
+    for (let i = 0; i < amountOf.questions; i++) {
+        document.querySelector(`.question-${i + 1} #question-title`).value = form.questions[i].title;
+        document.querySelector(`.question-${i + 1} #question-color`).value = form.questions[i].color;
+        for (let j = 0; j <= 4; j++) {
+            document.querySelector(`.question-${i + 1} #question-answer-${j + 1}`).value = form.questions[i].answers[j].text;
+            document.querySelector(`.question-${i + 1} #question-url-${j + 1}`).value = form.questions[i].answers[j].image;
+        }
+    }
 }
 
 function createQuizzLevels() {
@@ -187,45 +202,35 @@ function finalizeQuizzCreation() {
 
 function pickUpQuestions() {
 
-    // if(isLocale){
-    //     for (let i = 0; i < amountOf.questions; i++) {
-    //         document.querySelector(`.question-${i + 1} #question-title`).value = 
-    //         document.querySelector(`.question-${i + 1} #question-color`).value
-    //     }
-    // }
-
-
-
-
-
-
-    for (let i = 0; i < amountOf.questions; i++) {
-        let questionObject = {
-            title: '',
-            color: '',
-            answers: []
-        };
-        questionObject.title = document.querySelector(`.question-${i + 1} #question-title`).value;
-        questionObject.color = document.querySelector(`.question-${i + 1} #question-color`).value;
-        for (let j = 1; j <= 4; j++) {
-            let answerObject = {
-                text: '',
-                image: '',
-                isCorrectAnswer: ''
+    if (!isLocaleActive) {
+        for (let i = 0; i < amountOf.questions; i++) {
+            let questionObject = {
+                title: '',
+                color: '',
+                answers: []
             };
-            answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j}`).value;
-            answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j}`).value;
-            if (j === 1) {
-                answerObject.isCorrectAnswer = true;
+            questionObject.title = document.querySelector(`.question-${i + 1} #question-title`).value;
+            questionObject.color = document.querySelector(`.question-${i + 1} #question-color`).value;
+            for (let j = 0; j < 4; j++) {
+                let answerObject = {
+                    text: '',
+                    image: '',
+                    isCorrectAnswer: ''
+                };
+                answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j + 1}`).value;
+                answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j + 1}`).value;
+                if (j === 1) {
+                    answerObject.isCorrectAnswer = true;
+                }
+                else {
+                    answerObject.isCorrectAnswer = false;
+                }
+                if (answerObject.image) {
+                    questionObject.answers.push(answerObject);
+                }
             }
-            else {
-                answerObject.isCorrectAnswer = false;
-            }
-            if (answerObject.image) {
-                questionObject.answers.push(answerObject);
-            }
+            form.questions.push(questionObject);
         }
-        form.questions.push(questionObject);
     }
 
     // form.questions.forEach((question) => {
@@ -311,6 +316,7 @@ function pickUpLevels() {
 }
 
 function openEditQuestions(question, selected) {
+    document.querySelector(".create-quizz-questions").scrollIntoView()
     let questionsArray = [];
     const parent = question.parentNode;
     parent.querySelector("p:first-of-type").style.top = "10px";
