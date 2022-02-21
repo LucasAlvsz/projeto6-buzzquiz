@@ -1,5 +1,5 @@
 /* ----- MAGIC NUMBERS -----*/
-const TIMEAFTERSELECTINGALTERNATIVE = 1000
+const TIMEAFTERSELECTINGALTERNATIVE = 2000
 /* -------------------------*/
 let count = 0
 let numberQuestions = 0

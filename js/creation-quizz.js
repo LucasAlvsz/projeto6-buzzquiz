@@ -277,6 +277,7 @@ function pickUpLevels() {
 }
 
 function openEditQuestions(question, selected) {
+    document.querySelector(".create-quizz-questions").scrollIntoView()
     let questionsArray = [];
     const parent = question.parentNode;
     parent.querySelector("p:first-of-type").style.top = "10px";
