@@ -10,6 +10,7 @@ let form = {
     questions: [],
     levels: []
 };
+counter2 = 0;
 
 function createQuizz() {
     const creationPage = document.querySelector(".quizz-creation-page");
@@ -32,8 +33,18 @@ function createQuizz() {
 }
 
 function checkInformation(isLocale) {
-    if (isLocale) {
 
+    if (isLocale) {
+        form = isLocale;
+        console.log(form);
+        createQuizz();
+        document.querySelector(".create-quizz-informations input:first-child").value = form.title;
+        document.querySelector(".create-quizz-informations input:nth-child(2)").value = form.image;
+        document.querySelector(".create-quizz-informations input:nth-child(3)").value = form.questions.length; 
+        document.querySelector(".create-quizz-informations input:nth-child(4)").value = form.levels.length; 
+        amountOf.questions = form.questions.length;
+        amountOf.levels = form.levels.length;
+        counter ++;
     }
     else {
         form.title = document.querySelector(".create-quizz-informations input:first-child").value;
@@ -54,10 +65,20 @@ function checkInformation(isLocale) {
     if (amountOf.levels < 2) {
         alert("A quantidade de niveis tem de ser ao menos 2");
     }
-    if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
-        createQuizzQuestions();
-    }
+    if(!isLocale){
+        if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
+            createQuizzQuestions();
+        }
+        else{
+            if(counter2 > 0){
+                if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
+                    counter2 = 0;
+                    createQuizzQuestions();
+                }
+            }
 
+        }
+    }
 }
 
 // Chama a tela de criação das perguntas do quizz
@@ -165,6 +186,19 @@ function finalizeQuizzCreation() {
 
 
 function pickUpQuestions() {
+
+    // if(isLocale){
+    //     for (let i = 0; i < amountOf.questions; i++) {
+    //         document.querySelector(`.question-${i + 1} #question-title`).value = 
+    //         document.querySelector(`.question-${i + 1} #question-color`).value
+    //     }
+    // }
+
+
+
+
+
+
     for (let i = 0; i < amountOf.questions; i++) {
         let questionObject = {
             title: '',

@@ -93,9 +93,9 @@ function deleteUserQuizz(quizzUserId) {
 }
 
 function editUserQuizz(quizzUser) {
-	const quizz = localStorage.getItem(quizzUser.toString());
-	console.log(quizzUser);
-	checkInformation(quizzUser);
+	const quizz = JSON.parse(localStorage.getItem(quizzUser.toString()));
+	console.log(quizz);
+	checkInformation(quizz);
 }
 
 

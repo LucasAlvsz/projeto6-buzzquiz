@@ -12,7 +12,7 @@ function showPageQuizz(quizz) {
     if (typeof(quizz) == "number"){
         quizz = JSON.parse(localStorage.getItem(quizz))
     }
-    console.log(quizz);
+    // console.log(quizz);
     quizzLog = quizz
     numberQuestions = quizz.questions.length
     levels = quizz.levels
