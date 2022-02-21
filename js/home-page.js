@@ -1,9 +1,7 @@
 let quizzes = []
 let userQuizzesIds = []
-// const URL = "https://mock-api.driven.com.br/api/v4/buzzquizz/"
 let existsUserQuizzes = false
 
-//Pega os quizzes do servidor
 function pickUpAllQuizzes() {
     axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes").then(saveQuizz).catch((erro) => console.log(`${erro.response.status} Erro ao pegar os quizzes`));
 }
@@ -13,7 +11,6 @@ function saveQuizz(quizzesServer) {
 }
 function erro(erro) {
     console.log(erro);
-
 }
 function pickUpUserQuizzes() {
     const userQuizzesList = document.querySelector(".user-quizzes-list")
@@ -51,7 +48,7 @@ function pickUpUserQuizzes() {
     }
     showAllQuizzes(quizzes)
 }
-// Mostra os quizzes na tela inicial
+
 function showAllQuizzes(quizzes) {
     const allQuizzesList = document.querySelector(".all-quizzes-list");
     for (let i = 0; i < quizzes.length; i++) {

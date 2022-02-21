@@ -9,7 +9,7 @@ let indexLevel = 0
 let quizzLog
 let antiRepeater = 0
 function showPageQuizz(quizz) {
-    if (typeof(quizz) == "number"){
+    if (typeof (quizz) == "number") {
         quizz = JSON.parse(localStorage.getItem(quizz))
     }
     quizzLog = quizz
@@ -69,7 +69,7 @@ function selectAlternative(alternative) {
     count += 1
     setTimeout(() => {
         if (document.querySelector(`.q${count}`))
-            document.querySelector(`.q${count}`).scrollIntoView({block: "center", behavior: "smooth" })
+            document.querySelector(`.q${count}`).scrollIntoView({ block: "center", behavior: "smooth" })
         else
             showEndQuizz()
     }, TIMEAFTERSELECTINGALTERNATIVE);
@@ -87,7 +87,7 @@ function showEndQuizz() {
         minValueLog = minValueLog.reduce((a, b) => Math.max(a, b))
         for (let i = 0; i < levels.length; i++) {
             if (levels[i].minValue == minValueLog)
-                indexLevel = i; 
+                indexLevel = i;
         }
         document.querySelector(".all-questions").innerHTML +=
             `
@@ -107,7 +107,7 @@ function showEndQuizz() {
         <button onclick="backToHomePage()">Voltar para home</button>
     </div>
     `
-        document.querySelector(".result .question").scrollIntoView({block: "center", behavior: "smooth" })
+        document.querySelector(".result .question").scrollIntoView({ block: "center", behavior: "smooth" })
     }
 }
 
@@ -130,15 +130,4 @@ function restartQuizz(value) {
 
 function backToHomePage() {
     window.location.reload()
-    // restartQuizz(false)
-    // document.querySelector(".quizz-page").classList.add("hidden")
-    // document.querySelector("nav").classList.remove("hidden")
-    // document.querySelector("nav").scrollIntoView()
-    // const creationPage = document.querySelector(".quizz-creation-page").innerHTML = '';
-    // form = {
-    //     title: null,
-    //     image: null,
-    //     questions: [],
-    //     levels: []
-    // };
 }
