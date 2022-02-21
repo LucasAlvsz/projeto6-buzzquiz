@@ -10,8 +10,6 @@ let form = {
     questions: [],
     levels: []
 };
-counter2 = 0;
-isLocaleActive = false;
 
 function createQuizz() {
     const creationPage = document.querySelector(".quizz-creation-page");
@@ -33,27 +31,12 @@ function createQuizz() {
     `;
 }
 
-function checkInformation(isLocale) {
+function checkInformation() {
 
-    if (isLocale) {
-        form = isLocale;
-        isLocaleActive = true;
-        console.log(form);
-        createQuizz();
-        document.querySelector(".create-quizz-informations input:first-child").value = form.title;
-        document.querySelector(".create-quizz-informations input:nth-child(2)").value = form.image;
-        document.querySelector(".create-quizz-informations input:nth-child(3)").value = form.questions.length;
-        document.querySelector(".create-quizz-informations input:nth-child(4)").value = form.levels.length;
-        amountOf.questions = form.questions.length;
-        amountOf.levels = form.levels.length;
-        counter2++;
-    }
-    else {
-        form.title = document.querySelector(".create-quizz-informations input:first-child").value;
-        form.image = document.querySelector(".create-quizz-informations input:nth-child(2)").value;
-        amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
-        amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
-    }
+    form.title = document.querySelector(".create-quizz-informations input:first-child").value;
+    form.image = document.querySelector(".create-quizz-informations input:nth-child(2)").value;
+    amountOf.questions = document.querySelector(".create-quizz-informations input:nth-child(3)").value;
+    amountOf.levels = document.querySelector(".create-quizz-informations input:nth-child(4)").value;
 
     if (!(form.title.length >= 20 && form.title.length <= 65)) {
         alert("O titulo tem que ter entre 20 e 65 caracteres");
@@ -67,23 +50,11 @@ function checkInformation(isLocale) {
     if (amountOf.levels < 2) {
         alert("A quantidade de niveis tem de ser ao menos 2");
     }
-    if (!isLocale) {
-        if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
-            createQuizzQuestions();
-        }
-        else {
-            if (counter2 > 0) {
-                if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
-                    counter2 = 0;
-                    createQuizzQuestions(isLocale);
-                }
-            }
-
-        }
+    if ((regularExpression.test(form.image)) && (form.title.length >= 20 && form.title.length <= 65) && (amountOf.questions >= 3) && (amountOf.levels >= 2)) {
+        createQuizzQuestions();
     }
 }
 
-// Chama a tela de criação das perguntas do quizz
 function createQuizzQuestions() {
     const createQuizzQuestions = document.querySelector(".create-quizz-informations");
     const creationPage = document.querySelector(".quizz-creation-page");
@@ -97,6 +68,7 @@ function createQuizzQuestions() {
 `;
     showQuestions();
 }
+
 function showQuestions() {
     const formPosition = document.querySelector(".create-quizz-questions div");
     const form = document.querySelector("questions-form");
@@ -133,19 +105,87 @@ function showQuestions() {
             }
         }
     }
-    if (isLocaleActive) {
-       insertQuestionsToEdit();
-    }
 }
 
-function insertQuestionsToEdit() {
+function pickUpQuestions() {
+    let counterQuestionItens = {
+        length: 0,
+        color: 0,
+        answerAmount: 0,
+        isAnswerEmpty: 0,
+        isUrl: 0,
+        isTrue: 0
+    };
+
     for (let i = 0; i < amountOf.questions; i++) {
-        document.querySelector(`.question-${i + 1} #question-title`).value = form.questions[i].title;
-        document.querySelector(`.question-${i + 1} #question-color`).value = form.questions[i].color;
-        for (let j = 0; j <= 4; j++) {
-            document.querySelector(`.question-${i + 1} #question-answer-${j + 1}`).value = form.questions[i].answers[j].text;
-            document.querySelector(`.question-${i + 1} #question-url-${j + 1}`).value = form.questions[i].answers[j].image;
+        let questionObject = {
+            title: '',
+            color: '',
+            answers: []
+        };
+        questionObject.title = document.querySelector(`.question-${i + 1} #question-title`).value;
+        questionObject.color = document.querySelector(`.question-${i + 1} #question-color`).value;
+        for (let j = 0; j < 4; j++) {
+            let answerObject = {
+                text: '',
+                image: '',
+                isCorrectAnswer: ''
+            };
+            answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j + 1}`).value;
+            answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j + 1}`).value;
+            if (j === 1) {
+                answerObject.isCorrectAnswer = true;
+            }
+            else {
+                answerObject.isCorrectAnswer = false;
+            }
+            if (answerObject.image) {
+                questionObject.answers.push(answerObject);
+            }
         }
+        form.questions.push(questionObject);
+    }
+
+    form.questions.forEach((question) => {
+        let counter = 0;
+        if (question.title.length < 20 && counterQuestionItens.length === 0) {
+            alert("O titulo das questões devem ter pelo menos 20 caracteres");
+            counterQuestionItens.length++;
+            form.questions = [];
+        }
+        if (!colorRegularExpression.test(question.color) && counterQuestionItens.color === 0) {
+            alert("A cor de fundo das questões devem ser passada em formato hexadecimal");
+            counterQuestionItens.color++;
+            form.questions = [];
+        }
+        if (question.answers.length < 2 && counterQuestionItens.answerAmount === 0) {
+            alert("As questões devem conter ao menos duas respostas");
+            counterQuestionItens.answerAmount++;
+            form.questions = [];
+        }
+        question.answers.forEach((answer) => {
+            if ((answer.text == "") && counterQuestionItens.isAnswerEmpty === 0) {
+                alert("O texto das questões não podem estar vazios");
+                counterQuestionItens.isAnswerEmpty++;
+                form.questions = [];
+            }
+            if ((!(regularExpression.test(answer.image)) || answer.image == undefined) && counterQuestionItens.isUrl === 0) {
+                alert("A imagem das respostas devem ter uma url valida");
+                counterQuestionItens.isUrl++;
+                form.questions = [];
+            }
+            if (answer.isCorrectAnswer === true) {
+                counter++;
+            }
+        });
+        if ((counter === 0) && counterQuestionItens.isTrue === 0) {
+            alert("As questões devem conter ao menos uma respota correta");
+            counterQuestionItens.isTrue++;
+            form.questions = [];
+        }
+    });
+    if (form.questions.length !== 0) {
+        createQuizzLevels();
     }
 }
 
@@ -187,91 +227,16 @@ function finalizeQuizzCreation() {
 
     creationPage.innerHTML += `
     <div class="finalize-creation">
-    <h1>Seu quizz está pronto!</h1>
-    <div onclick="acessQuizz()" class="finalize-quizz"></div>
-    <button onclick="acessQuizz()">Acessar Quizz</button>
-    <button onclick="backToHomePage()">Voltar pra home</button>
+        <h1>Seu quizz está pronto!</h1>
+        <div onclick="acessQuizz()" class="finalize-quizz"></div>
+        <button onclick="acessQuizz()">Acessar Quizz</button>
+        <button onclick="backToHomePage()">Voltar pra home</button>
     </div>
     `;
     const finalizeDisplay = document.querySelector(".finalize-quizz");
     finalizeDisplay.style.backgroundImage = `linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), url(${form.image})`;
     finalizeDisplay.innerHTML += `<p>${form.title}</p>`;
 
-}
-
-
-function pickUpQuestions() {
-
-    if (!isLocaleActive) {
-        for (let i = 0; i < amountOf.questions; i++) {
-            let questionObject = {
-                title: '',
-                color: '',
-                answers: []
-            };
-            questionObject.title = document.querySelector(`.question-${i + 1} #question-title`).value;
-            questionObject.color = document.querySelector(`.question-${i + 1} #question-color`).value;
-            for (let j = 0; j < 4; j++) {
-                let answerObject = {
-                    text: '',
-                    image: '',
-                    isCorrectAnswer: ''
-                };
-                answerObject.text = document.querySelector(`.question-${i + 1} #question-answer-${j + 1}`).value;
-                answerObject.image = document.querySelector(`.question-${i + 1} #question-url-${j + 1}`).value;
-                if (j === 1) {
-                    answerObject.isCorrectAnswer = true;
-                }
-                else {
-                    answerObject.isCorrectAnswer = false;
-                }
-                if (answerObject.image) {
-                    questionObject.answers.push(answerObject);
-                }
-            }
-            form.questions.push(questionObject);
-        }
-    }
-
-    // form.questions.forEach((question) => {
-    //     let counter = 0;
-    //     if (question.title.length < 20) {
-    //         alert("O titulo da questão deve ter pelo menos 20 caracteres");
-    //         form.questions = [];
-    //     }
-    //     if (!colorRegularExpression.test(question.color)) {
-    //         alert("A cor da pergunta deve ser passada em formato hexadecimal");
-    //         form.questions = [];
-    //     }
-    //     if (question.answers.length < 2) {
-    //         alert("A questão deve conter ao menos duas respostas");
-    //         form.questions = [];
-    //     }
-
-    //     question.answers.forEach((answer) => {
-    //         if (answer.text == "") {
-    //             alert("O texto da questão não pode estar vazio");
-    //             console.log(answer);
-    //             form.questions = [];
-    //         }
-
-    //         if (!(regularExpression.test(answer.image)) || answer.image == undefined) {
-    //             alert("A imagem da resposta deve ter uma url valida");
-    //             form.questions = [];
-    //         }
-
-    //         if (answer.isCorrectAnswer === true) {
-    //             counter++;
-    //         }
-    //     });
-    //     if (counter === 0) {
-    //         alert("A questão deve conter ao menos uma respota correta");
-    //         form.questions = [];
-    //     }
-    // });
-    // if(form.questions.length !== 0){
-    createQuizzLevels();
-    // }
 }
 
 function pickUpLevels() {
